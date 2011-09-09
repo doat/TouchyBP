@@ -1,0 +1,40 @@
+/* Device is upright*/
+@media all and (orientation:portrait) {
+    
+}
+
+/* Device is */
+@media all and (orientation:landscape) {
+    
+}
+
+/* High pixel ratio backgrounds (i.e iPhone 4 retina display) */
+@media only screen and (-webkit-min-device-pixel-ratio : 1.5) {
+   selector {
+       /* An image twice as big as the original */
+       background-image: url(imageX2.png);
+       /* Resize the image to the original's dimensions */
+       background-size: 100px 50px;
+    }
+}
+
+/* Heart image animation */
+#heart{
+    width: 20px;
+    height: 20px;
+    margin: 10px;
+    -webkit-animation: heartbeat 1s ease-in-out infinite;
+    -moz-animation: heartbeat 1s ease-in-out infinite;
+}
+
+/* Define a custom animation */
+@-webkit-keyframes heartbeat {
+  /* Start opaque and normal size */
+  0% { opacity: 0.5; -webkit-transform:scale(1); -moz-transform:scale(1); }
+  /* Keep attributes for half the time of the duration */
+  50% { opacity: 0.5; -webkit-transform:scale(1); -moz-transform:scale(1); }
+  /* Become opaque and grow by 50% */
+  75% { opacity: 1; -webkit-transform:scale(1.5); -moz-transform:scale(1.5); }
+  /* Back to original attributes at the end */
+  100% { opacity: 0.5; -webkit-transform:scaleY(1); }
+}

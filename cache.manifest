@@ -1,0 +1,18 @@
+CACHE MANIFEST
+
+# Tip: Keep a version number you can increment in order to trigger an "updateready" js event
+# version 1
+
+# place all resources that should be cached here
+CACHE:
+/css/style.css
+/js/scripts.js
+
+# place all resources that require being online
+NETWORK:
+img/icon.png
+
+# define fallback resources when offline
+FALLBACK:
+/ /offline.html
+

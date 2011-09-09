@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="author" content="">  
+  
+  <!-- Viewport scale setting (required): http://labs.doat.com/touchybp/#meta-viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+  
+  <!-- iPhone standalone settings: http://labs.doat.com/touchybp/#standalone -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon" href="img/icon.png"/>
+  <link rel="apple-touch-startup-image" href="img/splash.png" />
+  
+  <script src="js/libs/touchy.js"></script>
+  <!-- Normalize css by : http://labs.doat.com/touchybp/#normalize.mobile.css -->
+  <script>
+    var csspath = TouchyJS.Env.isTouch() ? 'normalize.mobile.css' : 'normalize.css';
+    document.write('<link rel="stylesheet" href="css/normalize.css/'+csspath+'"><\/script>');
+  </script>
+  
+  <!-- TouchyPHP:getFile lets you reduce http requests: http://labs.doat.com/touchyphp/#getFile -->
+  <? echo TouchyPHP::getFile('css/style.css'); ?>
+  
+  <!-- When using TouchyJS.Nav it's good practice to hide the content before it's rendered: http://labs.doat.com/touchyjs/#nav-dependancy  -->
+  <style type="text/css"> .touchyjs-content{ display: none; } </style>
+  
+</head>
+
+<body>
+  <div class="touchyjs-header">
+      header content  
+  </div>
+  
+  <div class="touchyjs-content" id="page1">
+        Content page 1
+        <a href="" onclick="TouchyJS.Nav.goTo('page2'); return false;">Next page</a>
+        <br />
+        
+        <!-- TouchyPHP:getFile lets you reduce http requests: http://labs.doat.com/touchyphp/#getFile -->
+        <img src="img/splash.png" alt="image" />
+  </div>
+  
+  <div class="touchyjs-content" id="page2">
+        Content page 2
+        <a href="" onclick="TouchyJS.Nav.back(); return false;">Back</a>
+  </div>
+
+  <script>
+    if (!TouchyJS.Env.isTouch()){
+        document.write('<script src="js/libs/jquery-1.6.2.min.js"><\/script>');
+        document.write('<script src="js/plugins/touche-min.js"><\/script>');
+    }
+    else{
+        document.write('<script src="js/libs/zepto.0.7.min.js"><\/script>');
+    }      
+    TouchyJS.init();
+  </script>
+
+  <!--script defer src="js/plugins/iscroll.js"></script-->
+  <!--script defer src="js/plugins/boomerang.js"></script-->
+  
+  <!-- TouchyPHP:getFile lets you reduce http requests: http://labs.doat.com/touchyphp/#getFile -->
+  <script defer src="js/script.js"></script>
+    
+  <!-- Change UA-XXXXX-X to be your site's ID -->
+  <script>
+    window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
+    document.write('<script src="'+('https:' == location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js"><\/script>');
+  </script>
+  
+</body>
+</html>
