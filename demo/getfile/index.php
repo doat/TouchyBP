@@ -31,7 +31,7 @@
         <? echo TouchyPHP::getFile("css/style.css", TRUE); ?>
     </head>
     <body>
-        <!-- This elemnt's backgournd image is specified in style.css. If you see the image - all works OK -->
+        <!-- This element's background image is specified in style.css. If you see the image - all works OK -->
         <div class="image"></div>
         <br>
         <!--
