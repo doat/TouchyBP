@@ -5,14 +5,14 @@ CACHE MANIFEST
 
 # place all resources that should be cached here
 CACHE:
-/css/style.css
-/js/scripts.js
+#/css/style.css
+#/js/scripts.js
 
 # place all resources that require being online
 NETWORK:
-img/icon.png
+#img/icon.png
 
 # define fallback resources when offline
 FALLBACK:
-/ /offline.html
+#/ /offline.html
 
