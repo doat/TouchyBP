@@ -15,9 +15,9 @@
     <body>
         <div class="image"></div>
         <br>
-        <img src="<? echo TouchyPHP::getFile("img/image.png", TRUE); ?>" alt="image" />
+        <img src="<? echo TouchyPHP::getFile("img/image.png?v=1", TRUE); ?>" alt="image" />
         <br>
-        <img src="<? echo TouchyPHP::getFile("img/image.png", FALSE); ?>" alt="image" />
+        <img src="<? echo TouchyPHP::getFile("img/image.png?v=2", FALSE); ?>" alt="image" />
         <? echo TouchyPHP::getFile("js/scripts.js", TRUE); ?>
     </body>
 </html>
