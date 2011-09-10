@@ -1999,7 +1999,7 @@ function Doat_Scroll(){
                         innerEl.className = classnamePrefix+'created';
                         innerEl.style.width = '100%';
                         for (var i=0, len=el.children.length; i<len; i++){
-                            alert(el.children[i]);
+                            //alert(el.children[i]);
                             innerEl.appendChild(el.children[i]);
                         }
                         el.appendChild(innerEl);
