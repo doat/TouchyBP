@@ -1,0 +1,78 @@
+.s_circle {
+    text-align: center;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+.s_arrdown {
+    background: transparent;
+    width: 0;
+    height: 0;
+    border: 50px solid transparent;
+    border-color: #000 transparent transparent transparent;
+}
+.s_arrup {
+    background: transparent;
+    width: 0;
+    height: 0;
+    border: 50px solid transparent;
+    border-color: transparent transparent #000 transparent;
+}
+.s_arrright {
+    background: transparent;
+    width: 0;
+    height: 0;
+    border: 50px solid transparent;
+    border-color: transparent transparent transparent #000;
+}
+.s_arrleft {
+    background: transparent;
+    width: 0;
+    height: 0;
+    border: 50px solid transparent;
+    border-color: transparent #000 transparent transparent;
+}
+.s_arrupe {
+    width: 50px;
+    height: 50px;
+    margin: 10px 0;
+    background: transparent;
+    border: 10px solid #000;
+    border-width: 10px 10px 0 0;
+    -moz-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+.s_arrdowne {
+    width: 50px;
+    height: 50px;
+    margin: 10px 0;
+    background: transparent;
+    border: 10px solid #000;
+    border-width: 0 10px 10px 0;
+    -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.s_arrrighte {
+    width: 50px;
+    height: 50px;
+    margin: 10px 0;
+    background: transparent;
+    border: 10px solid #000;
+    border-width: 10px 10px 0 0;
+    -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.s_arrlefte {
+    width: 50px;
+    height: 50px;
+    margin: 10px 0;
+    background: transparent;
+    border: 10px solid #000;
+    border-width: 0 0 10px 10px;
+    -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
