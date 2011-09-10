@@ -1,4 +1,60 @@
+ /* 
+ * Copyright 2011 DoAT. All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without modification, are
+ * permitted provided that the following conditions are met:
+ * 
+ * 1. Redistributions of source code must retain the above copyright notice, this list of
+ *      conditions and the following disclaimer.
+ *
+ *   2. Redistributions in binary form must reproduce the above copyright notice, this list
+ *      of conditions and the following disclaimer in the documentation and/or other materials
+ *      provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY Do@ ``AS IS'' AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * The views and conclusions contained in the software and documentation are those of the
+ * authors and should not be interpreted as representing official policies, either expressed
+ * or implied, of DoAT.
+ */
+
 (function(){
+/* 
+ * Copyright 2011 DoAT. All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without modification, are
+ * permitted provided that the following conditions are met:
+ * 
+ * 1. Redistributions of source code must retain the above copyright notice, this list of
+ *      conditions and the following disclaimer.
+ *
+ *   2. Redistributions in binary form must reproduce the above copyright notice, this list
+ *      of conditions and the following disclaimer in the documentation and/or other materials
+ *      provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY Do@ ``AS IS'' AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * The views and conclusions contained in the software and documentation are those of the
+ * authors and should not be interpreted as representing official policies, either expressed
+ * or implied, of DoAT.
+ */
+
 /**
 * @description Enables attachment of callback functions to Doat events
 * @class
@@ -116,7 +172,35 @@ var Doat_Events = function(){
         eventArr['blurred'].enabled = true;
         eventArr['focused'].enabled = eventArr['visible'].enabled = eventArr['hidden'].enabled = false;
     });
-};/**
+};/* 
+ * Copyright 2011 DoAT. All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without modification, are
+ * permitted provided that the following conditions are met:
+ * 
+ * 1. Redistributions of source code must retain the above copyright notice, this list of
+ *      conditions and the following disclaimer.
+ *
+ *   2. Redistributions in binary form must reproduce the above copyright notice, this list
+ *      of conditions and the following disclaimer in the documentation and/or other materials
+ *      provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY Do@ ``AS IS'' AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * The views and conclusions contained in the software and documentation are those of the
+ * authors and should not be interpreted as representing official policies, either expressed
+ * or implied, of DoAT.
+ */
+
+/**
 * A utility for getting info detected about the platform and browser running the script.
 * @class
 */
@@ -155,7 +239,8 @@ function Doat_Env(cfg){
             m[2] && '' ||
             m[3] && 'nokia'||
             m[4] && 'blackberry' ||
-            m[5] && '';  
+            m[5] && '' ||
+            'desktop';  
         
         return {
             "name": n,
@@ -355,7 +440,35 @@ function Doat_Env(cfg){
             break;
         }
     }
-}/**
+}/* 
+ * Copyright 2011 DoAT. All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without modification, are
+ * permitted provided that the following conditions are met:
+ * 
+ * 1. Redistributions of source code must retain the above copyright notice, this list of
+ *      conditions and the following disclaimer.
+ *
+ *   2. Redistributions in binary form must reproduce the above copyright notice, this list
+ *      of conditions and the following disclaimer in the documentation and/or other materials
+ *      provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY Do@ ``AS IS'' AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * The views and conclusions contained in the software and documentation are those of the
+ * authors and should not be interpreted as representing official policies, either expressed
+ * or implied, of DoAT.
+ */
+
+/**
 * Providing the ability to embed DOML tags inside the document HTML, parse and replace with predefined code.
 * @class
 */
@@ -363,7 +476,7 @@ function Doat_DOML(){
     var imageTemplate = 'http://doatresizer.appspot.com/?url={src}&width={width}&height={height}&cache=short&crop={crop}', 
     templates = {
         'searchbar':{type: 'replace', html:
-                        '<form '+
+                        '<div><form '+
                             'id="doml-searchbar-form" '+
                             'onsubmit="{onsubmit}();Doat.Searchbar.onSubmit();return false;" '+
                             '>'+
@@ -376,10 +489,7 @@ function Doat_DOML(){
                                 'style="{style}" '+
                                 'clearbutton={clearbutton}' +
                                 '/>'+
-                        '</form>'+
-                        '<script>'+
-                            'if ({autoinit}) Doat.Searchbar.autoinit({onsubmit});'+
-                        '<'+'/script>'},
+                        '</form></div>'},
         'navigate': {type: 'replace', html: '<a href="javascript://" class="{class}" onclick="Doat.Navigation.goTo(\'{to}\')"><span>{label}</span></a>'},
         'image': {type: 'image', html: '<img src="'+imageTemplate+'" alt="{alt}" />'}
     },
@@ -445,6 +555,34 @@ function Doat_DOML(){
         return _renderAttributes(pseudoTag, imageTemplate);
     }
 }
+/* 
+ * Copyright 2011 DoAT. All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without modification, are
+ * permitted provided that the following conditions are met:
+ * 
+ * 1. Redistributions of source code must retain the above copyright notice, this list of
+ *      conditions and the following disclaimer.
+ *
+ *   2. Redistributions in binary form must reproduce the above copyright notice, this list
+ *      of conditions and the following disclaimer in the documentation and/or other materials
+ *      provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY Do@ ``AS IS'' AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * The views and conclusions contained in the software and documentation are those of the
+ * authors and should not be interpreted as representing official policies, either expressed
+ * or implied, of DoAT.
+ */
+
 /**
 * Instantiated if a DOML:searchbar tag was found in the document during parse()
 * Gives a set of properties and methods for easy access to the DOM element and value.
@@ -554,11 +692,6 @@ var Doat_Searchbar = function(cfg){
     }
 
     function onSubmit(){
-        Doat.Messenger.trigger(Doat.Events.USER_ACTION,{
-                'action': 'Search',
-                'newQuery': getValue()
-            }
-        );
         blur();
     }
 };
@@ -610,6 +743,34 @@ function ClearButton(){
     };
         
 }
+/* 
+ * Copyright 2011 DoAT. All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without modification, are
+ * permitted provided that the following conditions are met:
+ * 
+ * 1. Redistributions of source code must retain the above copyright notice, this list of
+ *      conditions and the following disclaimer.
+ *
+ *   2. Redistributions in binary form must reproduce the above copyright notice, this list
+ *      of conditions and the following disclaimer in the documentation and/or other materials
+ *      provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY Do@ ``AS IS'' AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * The views and conclusions contained in the software and documentation are those of the
+ * authors and should not be interpreted as representing official policies, either expressed
+ * or implied, of DoAT.
+ */
+
 /**
 * Instantiated if a DOML:slider tag was found in the document during parse()
 * @class
@@ -785,7 +946,35 @@ var Doat_Slider = function(){
             $el.removeClass('displayed');
         };
     }
-};/**
+};/* 
+ * Copyright 2011 DoAT. All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without modification, are
+ * permitted provided that the following conditions are met:
+ * 
+ * 1. Redistributions of source code must retain the above copyright notice, this list of
+ *      conditions and the following disclaimer.
+ *
+ *   2. Redistributions in binary form must reproduce the above copyright notice, this list
+ *      of conditions and the following disclaimer in the documentation and/or other materials
+ *      provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY Do@ ``AS IS'' AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * The views and conclusions contained in the software and documentation are those of the
+ * authors and should not be interpreted as representing official policies, either expressed
+ * or implied, of DoAT.
+ */
+
+/**
 * Instantiated if a DOML:swiper tag was found in the document during parse()
 * @class
 */
@@ -2193,6 +2382,34 @@ if (typeof exports !== 'undefined') exports.iScroll = iScroll;
 else window.iScroll = iScroll;
 
 })();
+/* 
+ * Copyright 2011 DoAT. All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without modification, are
+ * permitted provided that the following conditions are met:
+ * 
+ * 1. Redistributions of source code must retain the above copyright notice, this list of
+ *      conditions and the following disclaimer.
+ *
+ *   2. Redistributions in binary form must reproduce the above copyright notice, this list
+ *      of conditions and the following disclaimer in the documentation and/or other materials
+ *      provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY Do@ ``AS IS'' AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * The views and conclusions contained in the software and documentation are those of the
+ * authors and should not be interpreted as representing official policies, either expressed
+ * or implied, of DoAT.
+ */
+
 /**
 * @class Scroll
 * @description Provides the fixed positioning for header with scrolling content.
@@ -2716,7 +2933,35 @@ function normalizeArguments(args){
  * @version 1.0.0 (2011/08/03 10:49 PM)
  * Released under the MIT License
  */
-var hasher=(function(i){var m=25,n=i.document,a=i.location,l=i.history,s=signals.Signal,d,r,k,A,c,y,p=/#(.*)$/,h=/(\?.*)|(\#.*)/,e=/^\#/,g=(!+"\v1"),w=("onhashchange" in i),b=g&&!w,o=(a.protocol==="file:");function q(C){if(!C){return""}var B=new RegExp("^\\"+d.prependHash+"|\\"+d.appendHash+"$","g");return C.replace(B,"")}function z(){var B=p.exec(d.getURL());return(B&&B[1])?decodeURIComponent(B[1]):""}function v(){return(c)?c.contentWindow.frameHash:null}function u(){c=n.createElement("iframe");c.src="about:blank";c.style.display="none";n.body.appendChild(c)}function f(){if(c&&r!==v()){var B=c.contentWindow.document;B.open();B.write("<html><head><title>"+n.title+'</title><script type="text/javascript">var frameHash="'+r+'";<\/script></head><body>&nbsp;</body></html>');B.close()}}function j(B){B=decodeURIComponent(B);if(r!==B){var C=r;r=B;if(b){f()}d.changed.dispatch(q(B),q(C))}}y=(b)?function(){var C=z(),B=v();if(B!==r&&B!==C){d.setHash(q(B))}else{if(C!==r){j(C)}}}:function(){var B=z();if(B!==r){j(B)}};function x(D,B,C){if(D.addEventListener){D.addEventListener(B,C,false)}else{if(D.attachEvent){D.attachEvent("on"+B,C)}}}function t(D,B,C){if(D.removeEventListener){D.removeEventListener(B,C,false)}else{if(D.detachEvent){D.detachEvent("on"+B,C)}}}d={VERSION:"1.0.0",appendHash:"",prependHash:"/",separator:"/",changed:new s(),stopped:new s(),initialized:new s(),init:function(){if(A){return}r=z();if(w){x(i,"hashchange",y)}else{if(b){if(!c){u()}f()}k=setInterval(y,m)}A=true;d.initialized.dispatch(q(r))},stop:function(){if(!A){return}if(w){t(i,"hashchange",y)}else{clearInterval(k);k=null}A=false;d.stopped.dispatch(q(r))},isActive:function(){return A},getURL:function(){return a.href},getBaseURL:function(){return d.getURL().replace(h,"")},setHash:function(B){var C=Array.prototype.slice.call(arguments);B=C.join(d.separator);B=B?d.prependHash+B.replace(e,"")+d.appendHash:B;if(B!==r){j(B);if(g&&o){B=B.replace(/\?/,"%3F")}a.hash="#"+encodeURI(B)}},getHash:function(){return q(r)},getHashAsArray:function(){return d.getHash().split(d.separator)},dispose:function(){d.stop();d.initialized.dispose();d.stopped.dispose();d.changed.dispose();c=d=i.hasher=null},toString:function(){return'[hasher version="'+d.VERSION+'" hash="'+d.getHash()+'"]'}};return d}(window));/**
+var hasher=(function(i){var m=25,n=i.document,a=i.location,l=i.history,s=signals.Signal,d,r,k,A,c,y,p=/#(.*)$/,h=/(\?.*)|(\#.*)/,e=/^\#/,g=(!+"\v1"),w=("onhashchange" in i),b=g&&!w,o=(a.protocol==="file:");function q(C){if(!C){return""}var B=new RegExp("^\\"+d.prependHash+"|\\"+d.appendHash+"$","g");return C.replace(B,"")}function z(){var B=p.exec(d.getURL());return(B&&B[1])?decodeURIComponent(B[1]):""}function v(){return(c)?c.contentWindow.frameHash:null}function u(){c=n.createElement("iframe");c.src="about:blank";c.style.display="none";n.body.appendChild(c)}function f(){if(c&&r!==v()){var B=c.contentWindow.document;B.open();B.write("<html><head><title>"+n.title+'</title><script type="text/javascript">var frameHash="'+r+'";<\/script></head><body>&nbsp;</body></html>');B.close()}}function j(B){B=decodeURIComponent(B);if(r!==B){var C=r;r=B;if(b){f()}d.changed.dispatch(q(B),q(C))}}y=(b)?function(){var C=z(),B=v();if(B!==r&&B!==C){d.setHash(q(B))}else{if(C!==r){j(C)}}}:function(){var B=z();if(B!==r){j(B)}};function x(D,B,C){if(D.addEventListener){D.addEventListener(B,C,false)}else{if(D.attachEvent){D.attachEvent("on"+B,C)}}}function t(D,B,C){if(D.removeEventListener){D.removeEventListener(B,C,false)}else{if(D.detachEvent){D.detachEvent("on"+B,C)}}}d={VERSION:"1.0.0",appendHash:"",prependHash:"/",separator:"/",changed:new s(),stopped:new s(),initialized:new s(),init:function(){if(A){return}r=z();if(w){x(i,"hashchange",y)}else{if(b){if(!c){u()}f()}k=setInterval(y,m)}A=true;d.initialized.dispatch(q(r))},stop:function(){if(!A){return}if(w){t(i,"hashchange",y)}else{clearInterval(k);k=null}A=false;d.stopped.dispatch(q(r))},isActive:function(){return A},getURL:function(){return a.href},getBaseURL:function(){return d.getURL().replace(h,"")},setHash:function(B){var C=Array.prototype.slice.call(arguments);B=C.join(d.separator);B=B?d.prependHash+B.replace(e,"")+d.appendHash:B;if(B!==r){j(B);if(g&&o){B=B.replace(/\?/,"%3F")}a.hash="#"+encodeURI(B)}},getHash:function(){return q(r)},getHashAsArray:function(){return d.getHash().split(d.separator)},dispose:function(){d.stop();d.initialized.dispose();d.stopped.dispose();d.changed.dispose();c=d=i.hasher=null},toString:function(){return'[hasher version="'+d.VERSION+'" hash="'+d.getHash()+'"]'}};return d}(window));/* 
+ * Copyright 2011 DoAT. All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without modification, are
+ * permitted provided that the following conditions are met:
+ * 
+ * 1. Redistributions of source code must retain the above copyright notice, this list of
+ *      conditions and the following disclaimer.
+ *
+ *   2. Redistributions in binary form must reproduce the above copyright notice, this list
+ *      of conditions and the following disclaimer in the documentation and/or other materials
+ *      provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY Do@ ``AS IS'' AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * The views and conclusions contained in the software and documentation are those of the
+ * authors and should not be interpreted as representing official policies, either expressed
+ * or implied, of DoAT.
+ */
+
+/**
 * Providing the ability to navigate between content "pages" using a smoothe motion animation
 * @class
 */
@@ -2996,7 +3241,7 @@ var Doat_Navigation = function(){
     var changed = function(_page, _cb) {
         if (typeof _page == "function") {
             _cb = _page;
-            _page = "__default";
+            _page = ["__default"];
         } else if (typeof _page == "string") {
             if (_page == "") {
                 _page = "__empty";
@@ -3015,7 +3260,7 @@ var Doat_Navigation = function(){
         var paths = newHash.split('/'),
             page = "__empty";
         
-        if (paths.length > 0) {
+        if (paths.length > 0 && paths[0] != "") {
             page = paths[0];
         }
 
@@ -3025,8 +3270,7 @@ var Doat_Navigation = function(){
         if (!addressCbArr["__default"]) addressCbArr["__default"] = [];
         
         var cbs = addressCbArr[page].concat(addressCbArr["__default"]);
-        if (page == "__empty") page = firstPageId;
-        
+        if (page == "__empty") page = firstPageId;        
         
         if (ADDRESS_FIRST) {
             navigate(page, {
@@ -3122,7 +3366,35 @@ function Doat_Progress_Indicator(){
             mainSpinner.stop();    
         }        
     };
-}function create(tagName, parent, props, callback, adjacentNode) {
+}/* 
+ * Copyright 2011 DoAT. All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without modification, are
+ * permitted provided that the following conditions are met:
+ * 
+ * 1. Redistributions of source code must retain the above copyright notice, this list of
+ *      conditions and the following disclaimer.
+ *
+ *   2. Redistributions in binary form must reproduce the above copyright notice, this list
+ *      of conditions and the following disclaimer in the documentation and/or other materials
+ *      provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY Do@ ``AS IS'' AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * The views and conclusions contained in the software and documentation are those of the
+ * authors and should not be interpreted as representing official policies, either expressed
+ * or implied, of DoAT.
+ */
+
+function create(tagName, parent, props, callback, adjacentNode) {
     var doc = parent ? parent.ownerDocument : document;
     var o = doc.createElement(tagName);
     if (props) for (var p in props) {
@@ -3245,7 +3517,33 @@ function removeListener(){
     else if (el.detachEvent){
       el.detachEvent('on'+type, cb);
     }
-}// Copyright 2011 DoAT All Rights Reserved.
+}/* 
+ * Copyright 2011 DoAT. All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without modification, are
+ * permitted provided that the following conditions are met:
+ * 
+ * 1. Redistributions of source code must retain the above copyright notice, this list of
+ *      conditions and the following disclaimer.
+ *
+ *   2. Redistributions in binary form must reproduce the above copyright notice, this list
+ *      of conditions and the following disclaimer in the documentation and/or other materials
+ *      provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY Do@ ``AS IS'' AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * The views and conclusions contained in the software and documentation are those of the
+ * authors and should not be interpreted as representing official policies, either expressed
+ * or implied, of DoAT.
+ */
 
 /**
  * @class
@@ -3726,6 +4024,34 @@ if (!window.doat_config || !doat_config.manualInit){
 }
 
     
+
+ /* 
+ * Copyright 2011 DoAT. All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without modification, are
+ * permitted provided that the following conditions are met:
+ * 
+ * 1. Redistributions of source code must retain the above copyright notice, this list of
+ *      conditions and the following disclaimer.
+ *
+ *   2. Redistributions in binary form must reproduce the above copyright notice, this list
+ *      of conditions and the following disclaimer in the documentation and/or other materials
+ *      provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY Do@ ``AS IS'' AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * The views and conclusions contained in the software and documentation are those of the
+ * authors and should not be interpreted as representing official policies, either expressed
+ * or implied, of DoAT.
+ */
 
     window['Doat'] = Doat;
 })();
