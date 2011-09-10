@@ -18,14 +18,22 @@ Quick start
 Download the files, and take a gander in `index.html`.
 Browse the page with your mobile device or desktop browser - ready to make you own app now?
 
-If you got a php server then you have to try out TouchyPHP! It let's you embed all sorts of assets into the page, thus reducing your browsers http request calls. 
+If you got a php server then you have to try out TouchyPHP <http://github.com/doat/TouchyPHP>!
+It let's you embed all sorts of assets into the page, thus reducing your browsers http request calls.
+We got a demo for that <http://github.com/doat/TouchyBP/>
+
+Demos
+-----------
+
+Check em out <https://github.com/doat/TouchyBP/tree/master/demo>
+
 
 Dependencies
 --------------
 
 Well, you must have seen we use quite a lot of open source code.
 
-* jQuery/Zepto for TouchyJS
+* jQuery/Zepto for TouchyJS <http://github.com/doat/TouchyJS>
 * spin.js for our progress indicator
 * signals and hasher for browser history and deep linking
 * iScroll for fixed header scrolling
