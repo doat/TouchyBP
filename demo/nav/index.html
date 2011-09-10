@@ -18,7 +18,7 @@
             // Determines if the agent has a touch interface:  http://labs.doat.com/touchybp/#istouch
             var isTouch = location.href.indexOf('istouch=true') !== -1 ? true : ('ontouchstart' in window);
             // TouchyJs configuration: http://labs.doat.com/touchyjs/#configuration
-            var doat_config = {
+            var touchyjsConfig = {
                 'fixedPositioning': true, // default
                 'browserHistory': true // default
             };
@@ -34,21 +34,21 @@
         <link href="css/style.css" rel="stylesheet" />
 
         <!-- Hide content before rendering: http://labs.doat.com/touchyjs/#nav-dependancy  -->
-        <style type="text/css"> .doml_content { display: none; } </style>
+        <style type="text/css"> .touchyjs-content { display: none; } </style>
     </head>
     <body>
-        <div class="doml_header">
-            <h1><a href="" onclick="Doat.Nav.goTo('page1'); return false;">Loading...</a></h1>
-            <a href="" onclick="Doat.Nav.back(); return false;" class="btn-back">Back</a>
-            <doml:searchbar onsubmit="search" defaulttext="Type to search"></doml:searchbar>
+        <div class="touchyjs-header">
+            <h1><a href="" onclick="TouchyJS.Nav.goTo('page1'); return false;">Loading...</a></h1>
+            <a href="" onclick="TouchyJS.Nav.back(); return false;" class="btn-back">Back</a>
+            <tml:searchbar onsubmit="search" defaulttext="Type to search"></tml:searchbar>
         </div>
-        <div class="doml_content" id="search">
+        <div class="touchyjs-content" id="search">
             <div>
                 <span class="loading">Loading results</span>
             </div>
         </div>
    
-        <div class="doml_content" id="item">
+        <div class="touchyjs-content" id="item">
             <div>
                 <h2></h2>
                 <p></p>

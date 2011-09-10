@@ -51,23 +51,20 @@ class TouchyPHP {
         if ($forceInclude !== false){
             switch ($format){
                 case 'css':
-                    // get file content
-                    $content = file_get_contents($filename);
-                    
-                    // update path of relative image urls
-                    //$content = self::_replaceImageUrls($filename, $content);
-                    
-                    // set content within <style> tag
-                    $value = self::_getInternalTag($format, $content);
                 case 'js':                    
                     // get file content
                     $content = file_get_contents($filename);
                     
                     // set content within <script> tag
-                    $value = self::_getInternalTag($format, $content);
+                    $value = self::_getInternalTag($filename, $format, $content);
                 default:
+                    // If the file is local (too risky and slow to let the server fetch files form the web)
                     // if filename can be converted to image data URI
-                    if (self::_canConvertToImageDataURI($filename)){
+                    if (self::_isLocalFile($filename) && self::_canConvertToImageDataURI($format) ){
+                         // Remove trailing querystring
+                        if (strrpos($filename, '?')){
+                            $filename = substr($filename, 0, strrpos($filename, '?'));
+                        }
                         // get file content
                         $content = file_get_contents($filename);
                         
@@ -87,26 +84,23 @@ class TouchyPHP {
         }
         return $value;
     }
+
+    /**
+     * Returns if a filepath specified is relative or absolute 
+     * @param <string> $filename
+     * @return <boolean>
+     */
+    private function _isLocalFile($filename) {
+        return !(preg_match("/(https?:\/\/)/i", $filename));
+    }
     
     /**
      * Gets an image filename and returns if it can be converted to base64
      * @param <string> $filename
      * @return <boolean>
      */
-    private function _canConvertToImageDataURI($filename) {
-        // list of image formats allowed for base64 encoding
-        $formatArray = array('jpeg', 'jpg', 'jpe', 'png', 'gif');
-
-        // Get file format
-        $format = pathinfo($filename, PATHINFO_EXTENSION);
-        
-        // Remove trailing querystring
-        if (strrpos($format, '?')){
-            $format = substr($format, 0, strrpos($format, '?'));
-        }
-
-        // Return whether the file format is allowed for base64 encoding
-        return (in_array($format, $formatArray));
+    private function _canConvertToImageDataURI($format) {
+        return preg_match("/(jpe?g|jpe|png|gif|bmp)(\?.*)?$/i", $format);
     }
     
     /**
@@ -122,17 +116,21 @@ class TouchyPHP {
         // return the image URI
         return 'data:image/'.$format.';base64,'.$data;
     }
-    
+
     /**
      * Searches for url(filepath) in content and returns manipulated according to php page location
      * @param <string> $format
      * @param <string> $content
      * @ignore
      */
-    private static function _replaceImageUrls($filename, $content){
-        $content = preg_replace_callback('/url\([\'"]?([^\)\'"]+)/',
-                                        function($m){
-                                            return str_replace($m[1], '*** REPLACE string ***', $m[0]);
+    private static function _replaceImageUrls($filepath, $content){
+        $content = preg_replace_callback('/url\([\'"]?([^\^(https?:\/\/))\'"]+)/',
+                                        function($m) use ($filepath){
+                                            $newPath = explode("/", $filepath);
+                                            unset($newPath[count($newPath)-1]);
+                                            $newPath = implode("/", $newPath) . "/" . $m[1];
+                                            return str_replace($m[1], $newPath, $m[0]);
+                                            
                                         },
                                         $content);
         return $content;
@@ -162,10 +160,11 @@ class TouchyPHP {
      * @param <string> $content
      * @return <string> HTML tag
      */
-    private static function _getInternalTag($format, $content){
+    private static function _getInternalTag($filename, $format, $content){
         switch ($format){
             case 'css':
                 $template = '<style type="text/css">{content}</style>';
+                $content = self::_replaceImageUrls($filename, $content);
                 break;
             case 'js':
                 $template = '<script type="text/javascript">{content}</script>';

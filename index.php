@@ -7,7 +7,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title></title>
+        <title>Touchy BP</title>
         <meta name="description" content="">
         <meta name="author" content="">
         <!-- Viewport scale setting (required): http://labs.doat.com/touchybp/#meta-viewport -->
@@ -23,7 +23,7 @@
             // Determines if the agent has a touch interface:  http://labs.doat.com/touchybp/#istouch
             var isTouch = location.href.indexOf('istouch=true') !== -1 ? true : ('ontouchstart' in window);
             // TouchyJs configuration: http://labs.doat.com/touchyjs/#configuration
-            var doat_config = {
+            var touchyjsConfig = {
                 'fixedPositioning': true, // default
                 'browserHistory': true // default
             };
@@ -39,27 +39,27 @@
         <? echo TouchyPHP::getFile('css/demo.css', FALSE); ?>
 
         <!-- Hide content before rendering: http://labs.doat.com/touchyjs/#nav-dependancy  -->
-        <style type="text/css"> .doml_content { display: none; } </style>
+        <style type="text/css"> .touchyjs-content { display: none; } </style>
     </head>
     <body>
-        <div class="doml_header">
+        <div class="touchyjs-header">
             Header content
         </div>
-        <div class="doml_content" id="page1">
+        <div class="touchyjs-content" id="page1">
             <div>                
                 Content page 1 <br>
                 <br>
-                <a href="" onclick="Doat.Nav.goTo('page2'); return false;">Go to next page</a>
+                <a href="" onclick="TouchyJS.Nav.goTo('page2'); return false;">Go to next page</a>
                 
                 <br><br><br><br><br><br><br>
             </div>
         </div>
    
-        <div class="doml_content" id="page2">
+        <div class="touchyjs-content" id="page2">
             <div>
                 Content page 2
                 <br>
-                <a href="" onclick="Doat.Nav.back(); return false;">Go back</a>
+                <a href="" onclick="TouchyJS.Nav.back(); return false;">Go back</a>
                 
                 <br><br><br><br><br><br><br>
             </div>
@@ -74,7 +74,7 @@
         </script>        
         <script src="js/libs/touchy.min.js"></script>
         <script>
-            <?/* 
+            <?/*
                 include 'file:///home/ran/workspace/TouchyJS/src/header.js';
                 include 'file:///home/ran/workspace/TouchyJS/src/events.js';
                 include 'file:///home/ran/workspace/TouchyJS/src/env.js';
@@ -82,7 +82,7 @@
                 include 'file:///home/ran/workspace/TouchyJS/src/tmls/searchbar.js';
                 include 'file:///home/ran/workspace/TouchyJS/src/tmls/slider.js';
                 include 'file:///home/ran/workspace/TouchyJS/src/tmls/swiper.js';
-                include 'file:///home/ran/workspace/TouchyJS/src/plugins/iscroll.js';
+                include 'file:///home/ran/workspace/TouchyJS/src/plugins/iscroll-lite.js';
                 include 'file:///home/ran/workspace/TouchyJS/src/scroll.js';
                 include 'file:///home/ran/workspace/TouchyJS/src/plugins/animate.js';
                 include 'file:///home/ran/workspace/TouchyJS/src/plugins/signals.min.js';
@@ -91,7 +91,7 @@
                 include 'file:///home/ran/workspace/TouchyJS/src/utils.js';
                 include 'file:///home/ran/workspace/TouchyJS/src/main.js';
                 include 'file:///home/ran/workspace/TouchyJS/src/footer.js';
-           */ ?>
+        */   ?>
         </script>        
 
         <!-- TouchyPHP:getFile lets you reduce http requests: http://labs.doat.com/touchyphp/#getFile -->

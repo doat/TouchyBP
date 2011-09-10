@@ -101,15 +101,7 @@ var Doat_Events = function(){
     };
 
     var call = function(cb){
-        //try{
-            cb();
-        //}
-        /*catch(e){
-            var log = Log || Doat.Log || (Logger) ? new Logger : null;
-            if (log){
-                log.error(e);
-            }
-        }*/
+        cb();
     };
 
     // shortcuts
@@ -208,7 +200,7 @@ function Doat_Env(cfg){
     var self = this,
         _info,
         _do_platform,        
-        orientationPrefix = (typeof Doat !== "undefined") ? "doml-orientation-" : "orientation-",
+        orientationPrefix = "orientation-",
         orientationRegEpx = new RegExp(orientationPrefix+"[^\s]*","g"),        
         isTouch = cfg && cfg.isTouch || ('ontouchstart' in window);
     
@@ -477,23 +469,23 @@ function Doat_DOML(){
     templates = {
         'searchbar':{type: 'replace', html:
                         '<div><form '+
-                            'id="doml-searchbar-form" '+
-                            'onsubmit="{onsubmit}();Doat.Searchbar.onSubmit();return false;" '+
+                            'id="tml-searchbar-form" '+
+                            'onsubmit="{onsubmit}();TouchyJS.Searchbar.onSubmit();return false;" '+
                             '>'+
                                 '<input type="text" '+
                                 'value="{defaulttext}" '+
-                                'onfocus="Doat.Searchbar.clearValue(\'{defaulttext}\')" '+
-                                'onblur="Doat.Searchbar.fillValue(\'{defaulttext}\')" '+
-                                'id="doml-searchbar-searchfield" '+
+                                'onfocus="TouchyJS.Searchbar.clearValue(\'{defaulttext}\')" '+
+                                'onblur="TouchyJS.Searchbar.fillValue(\'{defaulttext}\')" '+
+                                'id="tml-searchbar-searchfield" '+
                                 'name="searchfield" '+
                                 'style="{style}" '+
                                 'clearbutton={clearbutton}' +
                                 '/>'+
                         '</form></div>'},
-        'navigate': {type: 'replace', html: '<a href="javascript://" class="{class}" onclick="Doat.Navigation.goTo(\'{to}\')"><span>{label}</span></a>'},
+        'navigate': {type: 'replace', html: '<a href="javascript://" class="{class}" onclick="TouchyJS.Nav.goTo(\'{to}\')"><span>{label}</span></a>'},
         'image': {type: 'image', html: '<img src="'+imageTemplate+'" alt="{alt}" />'}
     },
-    prefix = 'doml',
+    prefix = 'tml',
     keyDefaultValues = {
         'autoinit': 'false'
     };
@@ -555,41 +547,41 @@ function Doat_DOML(){
         return _renderAttributes(pseudoTag, imageTemplate);
     }
 }
-/* 
- * Copyright 2011 DoAT. All rights reserved.
- * 
- * Redistribution and use in source and binary forms, with or without modification, are
- * permitted provided that the following conditions are met:
- * 
- * 1. Redistributions of source code must retain the above copyright notice, this list of
- *      conditions and the following disclaimer.
- *
- *   2. Redistributions in binary form must reproduce the above copyright notice, this list
- *      of conditions and the following disclaimer in the documentation and/or other materials
- *      provided with the distribution.
- *
- * THIS SOFTWARE IS PROVIDED BY Do@ ``AS IS'' AND ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
- * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
- * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
- * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * The views and conclusions contained in the software and documentation are those of the
- * authors and should not be interpreted as representing official policies, either expressed
- * or implied, of DoAT.
- */
+/*
+* Copyright 2011 DoAT. All rights reserved.
+*
+* Redistribution and use in source and binary forms, with or without modification, are
+* permitted provided that the following conditions are met:
+*
+* 1. Redistributions of source code must retain the above copyright notice, this list of
+*      conditions and the following disclaimer.
+*
+*   2. Redistributions in binary form must reproduce the above copyright notice, this list
+*      of conditions and the following disclaimer in the documentation and/or other materials
+*      provided with the distribution.
+*
+* THIS SOFTWARE IS PROVIDED BY Do@ ``AS IS'' AND ANY EXPRESS OR IMPLIED
+* WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+* FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> OR
+* CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+* CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+* SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+* ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+* NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+* ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*
+* The views and conclusions contained in the software and documentation are those of the
+* authors and should not be interpreted as representing official policies, either expressed
+* or implied, of DoAT.
+*/
 
 /**
-* Instantiated if a DOML:searchbar tag was found in the document during parse()
-* Gives a set of properties and methods for easy access to the DOM element and value.
-* In touch interfaces (tablet, mobile...) it enables the key board to display a "search" button with submition functionality.
-* @class
-*/
-var Doat_Searchbar = function(cfg){
+ * Instantiated if a DOML:searchbar tag was found in the document during parse()
+ * Gives a set of properties and methods for easy access to the DOM element and value.
+ * In touch interfaces (tablet, mobile...) it enables the key board to display a "search" button with submition functionality.
+ * @class
+ */
+var Doat_Searchbar = function(cfg) {
     var inputEl, clearButton;
 
     this.autoinit = autoinit;
@@ -601,149 +593,145 @@ var Doat_Searchbar = function(cfg){
     this.onSubmit = onSubmit;
     this.blur = blur;
     this.focus = focus;
-    
-    Doat.Events.ready(init);
-    
-    function init(){
-        inputEl = document.getElementById('doml-searchbar-searchfield');
-        if (cfg && cfg.searchClearButton){
-            addClearButton(cfg);   
+
+    mainObj.Events.ready(init);
+
+    function init() {
+        inputEl = document.getElementById('tml-searchbar-searchfield');
+        if(cfg && cfg.searchClearButton) {
+            addClearButton(cfg);
         }
     }
-    
-    function addClearButton(cfg){
-        if (getInputElement().getAttribute('clearbutton') !== ''){
+
+    function addClearButton(cfg) {
+        if(getInputElement().getAttribute('clearbutton') !== '') {
             clearButton = new ClearButton();
             var css = cfg && cfg.css || {};
-            !css['left'] && (css['left']= inputEl.offsetWidth);
-            
+            !css['left'] && (css['left'] = inputEl.offsetWidth);
             buttonEl = clearButton.init({
-                'css': css,
-                'onClick': function(){
+                'css' : css,
+                'onClick' : function() {
                     setValue('');
                     focus();
                 }
             });
-            
+
             var form = getInputElement().parentNode;
             form.style.position = 'relative';
             form.appendChild(buttonEl);
         }
     }
 
-    function clearValue(defaultText){
-        if (defaultText === ''){return;}
-        if (getValue() === defaultText){
+    function clearValue(defaultText) {
+        if(defaultText === '') {
+            return;
+        }
+        if(getValue() === defaultText) {
             setValue('');
         }
     }
 
-    function fillValue(defaultText){
-        if (defaultText === ''){return;}
-        if (getValue() === ''){
+    function fillValue(defaultText) {
+        if(defaultText === '') {
+            return;
+        }
+        if(getValue() === '') {
             setValue(defaultText);
         }
     }
-    
-    function focus(){
+
+    function focus() {
         inputEl.focus();
     }
-    
-    function blur(){
+
+    function blur() {
         inputEl.blur();
     }
 
     /**
-    * @method setValue
-    * @description Sets a new value to the searchbar textfield
-    * @param {string|integer} value New value to set
-    */
-    function setValue (value){
+     * @method setValue
+     * @description Sets a new value to the searchbar textfield
+     * @param {string|integer} value New value to set
+     */
+    function setValue(value) {
         inputEl.value = value;
     }
 
     /**
-    * @method getValue
-    * @description Returns the current value of the searchbar textfield
-    * @return {string} Current value of the searchbar textfield
-    */
-    function getValue(){
+     * @method getValue
+     * @description Returns the current value of the searchbar textfield
+     * @return {string} Current value of the searchbar textfield
+     */
+    function getValue() {
         return inputEl.value;
     }
 
     /**
-    * @method getInputElement
-    * @description Returns the generated searchbar textfield
-    * @return {object HTMLInputElement} input
-    */
-    function getInputElement(){
+     * @method getInputElement
+     * @description Returns the generated searchbar textfield
+     * @return {object HTMLInputElement} input
+     */
+    function getInputElement() {
         return inputEl;
     }
 
     /**
-    * @method autoinit
-    * @description Auto-searches the do_query value upon startup
-    * @param {function} searchFunc The search function to be called
-    * @ignore
-    */
-    function autoinit(searchFunc){
-        setValue(Doat.getSearchQuery());
+     * @method autoinit
+     * @description Auto-searches the do_query value upon startup
+     * @param {function} searchFunc The search function to be called
+     * @ignore
+     */
+    function autoinit(searchFunc) {
+        setValue(mainObj.getSearchQuery());
         searchFunc.call(this);
     }
 
-    function onSubmit(){
+    function onSubmit() {
         blur();
     }
-};
 
-function ClearButton(){
-    var $el,
-        css = {
-           'position': 'absolute',
-           'top': '5px',
-           'cursor': 'pointer',
-           'background-color': '#BBBBBB',
-           'width': '16px',
-           'height': '16px',
-           'text-align': 'center',
-           'line-height': '17px',
-           'border-radius': '8px',
-           '-webkitborder-radius': '8px',
-           '-moz-border-radius': '8px',
-           'color': 'white',
-           'font-weight': 'bold',
-           'font-size': '12px',
-           'font-family': 'arial',
-           'text-shadow': 'none',
-           'leftOffset': -19
-       };
-    
-    this.init = function(cfg){
-        for (i in cfg.css) css[i] = cfg.css[i];
-        css['left'] = css.left+css.leftOffset+'px';
-        
+};
+function ClearButton() {
+    var $el, css = {
+        'position' : 'absolute',
+        'top' : '5px',
+        'cursor' : 'pointer',
+        'background-color' : '#BBBBBB',
+        'width' : '16px',
+        'height' : '16px',
+        'text-align' : 'center',
+        'line-height' : '17px',
+        'border-radius' : '8px',
+        '-webkitborder-radius' : '8px',
+        '-moz-border-radius' : '8px',
+        'color' : 'white',
+        'font-weight' : 'bold',
+        'font-size' : '12px',
+        'font-family' : 'arial',
+        'text-shadow' : 'none',
+        'leftOffset' : -19
+    };
+
+    this.init = function(cfg) {
+        for(i in cfg.css)
+        css[i] = cfg.css[i];
+        css['left'] = css.left + css.leftOffset + 'px';
         $el = $('<span/>');
-        $el.addClass('doml-searchbar-clear')
-           .html('X')
-           .css(css)
-           .click(function(e){
-               e.preventDefault();
-               cfg.onClick();
-           });
-        
+        $el.addClass('tml-searchbar-clear').html('X').css(css).click(function(e) {
+            e.preventDefault();
+            cfg.onClick();
+        });
         return $el[0];
     }
-    
-    this.show = function(){
+
+    this.show = function() {
         $el.show();
     };
-        
-    this.hide = function(){
+
+    this.hide = function() {
         $el.hide();
     };
-        
-}
-/* 
+}/* 
  * Copyright 2011 DoAT. All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without modification, are
@@ -787,14 +775,14 @@ var Doat_Slider = function(){
             return false;
         }       
         
-        if (typeof Doat !== 'undefined'){
-            isTouch = Doat.Env.isMobile();
+        if (typeof mainObj !== 'undefined'){
+            isTouch = mainObj.Env.isMobile();
             
-            var b = Doat.Env.getInfo().browser;
+            var b = mainObj.Env.getInfo().browser;
             CSS_PREFIX = b === 'webkit' ? '-webkit-' : b === 'mozilla' ? '-moz-' : '';
         }
         else{
-            isTouch = true;
+            isTouch = ('ontouchstart' in window);
         }
         trackWidth = cfg.trackWidth;
         
@@ -804,7 +792,7 @@ var Doat_Slider = function(){
         TOUCHMOVE = isTouch ? 'touchmove' : 'mousemove';
         TOUCHEND = isTouch ? 'touchend' : 'mouseup';
         
-        $el = $('<div class="doml-slider" />');
+        $el = $('<div class="tml-slider" />');
         $originalEl.parent().append($el);
         $el.append($originalEl);
         
@@ -1037,10 +1025,10 @@ function Doat_Swiper() {
         if (options.autoplay) {
             _this.autoplayStart();
             if (options.stopAutoplayOnFocus) {
-                Doat.Events.focused(function(){
+                mainObj.Events.focused(function(){
                     _this.autoplayStop();
                 });
-                Doat.Events.blurred(function(){
+                mainObj.Events.blurred(function(){
                     _this.autoplayStart();
                 });
             }
@@ -1049,7 +1037,7 @@ function Doat_Swiper() {
 
     function addNavigationEvents() {
         var element = $itemsEl.parent().get(0);
-        Doat.Env.addEventListener(element, 'touch', function(e, data){
+        mainObj.Env.addEventListener(element, 'touch', function(e, data){
             switch (data.type){
                 case "start":
                     disableAnimation($itemsEl);
@@ -1077,7 +1065,7 @@ function Doat_Swiper() {
 
         if ($navEl && thumbsSwipe) {
             element = $navEl.parent().get(0);
-            Doat.Env.addEventListener(element, 'touch', function(e, data){
+            mainObj.Env.addEventListener(element, 'touch', function(e, data){
                 switch (data.type){
                     case "start":
                         disableAnimation($navEl);
@@ -1325,7 +1313,7 @@ function Doat_Swiper() {
         });
     }
 }/*!
- * iScroll v4.1.9 ~ Copyright (c) 2011 Matteo Spinelli, http://cubiq.org
+ * iScroll Lite base on iScroll v4.1.6 ~ Copyright (c) 2011 Matteo Spinelli, http://cubiq.org
  * Released under MIT license, http://cubiq.org/license
  */
 
@@ -1339,7 +1327,6 @@ var m = Math,
     has3d = 'WebKitCSSMatrix' in window && 'm11' in new WebKitCSSMatrix(),
     hasTouch = 'ontouchstart' in window,
     hasTransform = vendor + 'Transform' in document.documentElement.style,
-    isAndroid = (/android/gi).test(navigator.appVersion),
     isIDevice = (/iphone|ipad/gi).test(navigator.appVersion),
     isPlaybook = (/playbook/gi).test(navigator.appVersion),
     hasTransitionEnd = isIDevice || isPlaybook,
@@ -1349,7 +1336,7 @@ var m = Math,
             || window.mozRequestAnimationFrame
             || window.oRequestAnimationFrame
             || window.msRequestAnimationFrame
-            || function(callback) { return setTimeout(callback, 1); }
+            || function(callback) { return setTimeout(callback, 17); }
     })(),
     cancelFrame = (function () {
         return window.cancelRequestAnimationFrame
@@ -1366,7 +1353,6 @@ var m = Math,
     MOVE_EV = hasTouch ? 'touchmove' : 'mousemove',
     END_EV = hasTouch ? 'touchend' : 'mouseup',
     CANCEL_EV = hasTouch ? 'touchcancel' : 'mouseup',
-    WHEEL_EV = vendor == 'Moz' ? 'DOMMouseScroll' : 'mousewheel',
 
     // Helpers
     trnOpen = 'translate' + (has3d ? '3d(' : '('),
@@ -1386,35 +1372,12 @@ var m = Math,
         that.options = {
             hScroll: true,
             vScroll: true,
-            x: 0,
-            y: 0,
             bounce: true,
             bounceLock: false,
             momentum: true,
             lockDirection: true,
             useTransform: true,
             useTransition: false,
-            topOffset: 0,
-            checkDOMChanges: false,     // Experimental
-
-            // Scrollbar
-            hScrollbar: true,
-            vScrollbar: true,
-            fixedScrollbar: isAndroid,
-            hideScrollbar: isIDevice,
-            fadeScrollbar: isIDevice && has3d,
-            scrollbarClass: '',
-
-            // Zoom
-            zoom: false,
-            zoomMin: 1,
-            zoomMax: 4,
-            doubleTapZoom: 2,
-            wheelAction: 'scroll',
-
-            // Snap
-            snap: false,
-            snapThreshold: 1,
 
             // Events
             onRefresh: null,
@@ -1425,49 +1388,32 @@ var m = Math,
             onBeforeScrollEnd: null,
             onScrollEnd: null,
             onTouchEnd: null,
-            onDestroy: null,
-            onZoomStart: null,
-            onZoom: null,
-            onZoomEnd: null
+            onDestroy: null
         };
 
         // User defined options
         for (i in options) that.options[i] = options[i];
-        
-        // Set starting position
-        that.x = that.options.x;
-        that.y = that.options.y;
 
         // Normalize options
         that.options.useTransform = hasTransform ? that.options.useTransform : false;
         that.options.hScrollbar = that.options.hScroll && that.options.hScrollbar;
         that.options.vScrollbar = that.options.vScroll && that.options.vScrollbar;
-        that.options.zoom = that.options.useTransform && that.options.zoom;
         that.options.useTransition = hasTransitionEnd && that.options.useTransition;
-        
+
         // Set some default styles
         that.scroller.style[vendor + 'TransitionProperty'] = that.options.useTransform ? '-' + vendor.toLowerCase() + '-transform' : 'top left';
         that.scroller.style[vendor + 'TransitionDuration'] = '0';
         that.scroller.style[vendor + 'TransformOrigin'] = '0 0';
         if (that.options.useTransition) that.scroller.style[vendor + 'TransitionTimingFunction'] = 'cubic-bezier(0.33,0.66,0.66,1)';
         
-        if (that.options.useTransform) that.scroller.style[vendor + 'Transform'] = trnOpen + that.x + 'px,' + that.y + 'px' + trnClose;
-        else that.scroller.style.cssText += ';position:absolute;top:' + that.y + 'px;left:' + that.x + 'px';
-
-        if (that.options.useTransition) that.options.fixedScrollbar = true;
-
+        if (that.options.useTransform) that.scroller.style[vendor + 'Transform'] = trnOpen + '0,0' + trnClose;
+        else that.scroller.style.cssText += ';position:absolute;top:0;left:0';
+                
         that.refresh();
 
         that._bind(RESIZE_EV, window);
         that._bind(START_EV);
-        if (!hasTouch) {
-            that._bind('mouseout', that.wrapper);
-            that._bind(WHEEL_EV);
-        }
-
-        if (that.options.checkDOMChanges) that.checkDOMTime = setInterval(function () {
-            that._checkDOMChanges();
-        }, 500);
+        if (!hasTouch) that._bind('mouseout', that.wrapper);
     };
 
 // Prototype
@@ -1477,10 +1423,6 @@ iScroll.prototype = {
     y: 0,
     steps: [],
     scale: 1,
-    currPageX: 0, currPageY: 0,
-    pagesX: [], pagesY: [],
-    aniTime: null,
-    wheelZoomCount: 0,
     
     handleEvent: function (e) {
         var that = this;
@@ -1493,80 +1435,13 @@ iScroll.prototype = {
             case END_EV:
             case CANCEL_EV: that._end(e); break;
             case RESIZE_EV: that._resize(); break;
-            case WHEEL_EV: that._wheel(e); break;
             case 'mouseout': that._mouseout(e); break;
             case 'webkitTransitionEnd': that._transitionEnd(e); break;
         }
     },
-    
-    _checkDOMChanges: function () {
-        if (this.moved || this.zoomed || this.animating ||
-            (this.scrollerW == this.scroller.offsetWidth * this.scale && this.scrollerH == this.scroller.offsetHeight * this.scale)) return;
 
-        this.refresh();
-    },
-    
-    _scrollbar: function (dir) {
-        var that = this,
-            doc = document,
-            bar;
-
-        if (!that[dir + 'Scrollbar']) {
-            if (that[dir + 'ScrollbarWrapper']) {
-                if (hasTransform) that[dir + 'ScrollbarIndicator'].style[vendor + 'Transform'] = '';
-                that[dir + 'ScrollbarWrapper'].parentNode.removeChild(that[dir + 'ScrollbarWrapper']);
-                that[dir + 'ScrollbarWrapper'] = null;
-                that[dir + 'ScrollbarIndicator'] = null;
-            }
-
-            return;
-        }
-
-        if (!that[dir + 'ScrollbarWrapper']) {
-            // Create the scrollbar wrapper
-            bar = doc.createElement('div');
-
-            if (that.options.scrollbarClass) bar.className = that.options.scrollbarClass + dir.toUpperCase();
-            else bar.style.cssText = 'position:absolute;z-index:100;' + (dir == 'h' ? 'height:7px;bottom:1px;left:2px;right:' + (that.vScrollbar ? '7' : '2') + 'px' : 'width:7px;bottom:' + (that.hScrollbar ? '7' : '2') + 'px;top:2px;right:1px');
-
-            bar.style.cssText += ';pointer-events:none;-' + vendor + '-transition-property:opacity;-' + vendor + '-transition-duration:' + (that.options.fadeScrollbar ? '350ms' : '0') + ';overflow:hidden;opacity:' + (that.options.hideScrollbar ? '0' : '1');
-
-            that.wrapper.appendChild(bar);
-            that[dir + 'ScrollbarWrapper'] = bar;
-
-            // Create the scrollbar indicator
-            bar = doc.createElement('div');
-            if (!that.options.scrollbarClass) {
-                bar.style.cssText = 'position:absolute;z-index:100;background:rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.9);-' + vendor + '-background-clip:padding-box;-' + vendor + '-box-sizing:border-box;' + (dir == 'h' ? 'height:100%' : 'width:100%') + ';-' + vendor + '-border-radius:3px;border-radius:3px';
-            }
-            bar.style.cssText += ';pointer-events:none;-' + vendor + '-transition-property:-' + vendor + '-transform;-' + vendor + '-transition-timing-function:cubic-bezier(0.33,0.66,0.66,1);-' + vendor + '-transition-duration:0;-' + vendor + '-transform:' + trnOpen + '0,0' + trnClose;
-            if (that.options.useTransition) bar.style.cssText += ';-' + vendor + '-transition-timing-function:cubic-bezier(0.33,0.66,0.66,1)';
-
-            that[dir + 'ScrollbarWrapper'].appendChild(bar);
-            that[dir + 'ScrollbarIndicator'] = bar;
-        }
-
-        if (dir == 'h') {
-            that.hScrollbarSize = that.hScrollbarWrapper.clientWidth;
-            that.hScrollbarIndicatorSize = m.max(m.round(that.hScrollbarSize * that.hScrollbarSize / that.scrollerW), 8);
-            that.hScrollbarIndicator.style.width = that.hScrollbarIndicatorSize + 'px';
-            that.hScrollbarMaxScroll = that.hScrollbarSize - that.hScrollbarIndicatorSize;
-            that.hScrollbarProp = that.hScrollbarMaxScroll / that.maxScrollX;
-        } else {
-            that.vScrollbarSize = that.vScrollbarWrapper.clientHeight;
-            that.vScrollbarIndicatorSize = m.max(m.round(that.vScrollbarSize * that.vScrollbarSize / that.scrollerH), 8);
-            that.vScrollbarIndicator.style.height = that.vScrollbarIndicatorSize + 'px';
-            that.vScrollbarMaxScroll = that.vScrollbarSize - that.vScrollbarIndicatorSize;
-            that.vScrollbarProp = that.vScrollbarMaxScroll / that.maxScrollY;
-        }
-
-        // Reset position
-        that._scrollbarPos(dir, true);
-    },
-    
     _resize: function () {
-        var that = this;
-        setTimeout(function () { that.refresh(); }, isAndroid ? 200 : 0);
+        this.refresh();
     },
     
     _pos: function (x, y) {
@@ -1584,54 +1459,18 @@ iScroll.prototype = {
 
         this.x = x;
         this.y = y;
-
-        this._scrollbarPos('h');
-        this._scrollbarPos('v');
     },
 
-    _scrollbarPos: function (dir, hidden) {
-        var that = this,
-            pos = dir == 'h' ? that.x : that.y,
-            size;
-
-        if (!that[dir + 'Scrollbar']) return;
-
-        pos = that[dir + 'ScrollbarProp'] * pos;
-
-        if (pos < 0) {
-            if (!that.options.fixedScrollbar) {
-                size = that[dir + 'ScrollbarIndicatorSize'] + m.round(pos * 3);
-                if (size < 8) size = 8;
-                that[dir + 'ScrollbarIndicator'].style[dir == 'h' ? 'width' : 'height'] = size + 'px';
-            }
-            pos = 0;
-        } else if (pos > that[dir + 'ScrollbarMaxScroll']) {
-            if (!that.options.fixedScrollbar) {
-                size = that[dir + 'ScrollbarIndicatorSize'] - m.round((pos - that[dir + 'ScrollbarMaxScroll']) * 3);
-                if (size < 8) size = 8;
-                that[dir + 'ScrollbarIndicator'].style[dir == 'h' ? 'width' : 'height'] = size + 'px';
-                pos = that[dir + 'ScrollbarMaxScroll'] + (that[dir + 'ScrollbarIndicatorSize'] - size);
-            } else {
-                pos = that[dir + 'ScrollbarMaxScroll'];
-            }
-        }
-
-        that[dir + 'ScrollbarWrapper'].style[vendor + 'TransitionDelay'] = '0';
-        that[dir + 'ScrollbarWrapper'].style.opacity = hidden && that.options.hideScrollbar ? '0' : '1';
-        that[dir + 'ScrollbarIndicator'].style[vendor + 'Transform'] = trnOpen + (dir == 'h' ? pos + 'px,0' : '0,' + pos + 'px') + trnClose;
-    },
-    
     _start: function (e) {
         var that = this,
             point = hasTouch ? e.touches[0] : e,
-            matrix, x, y,
-            c1, c2;
+            matrix, x, y;
 
         if (!that.enabled) return;
 
         if (that.options.onBeforeScrollStart) that.options.onBeforeScrollStart.call(that, e);
-
-        if (that.options.useTransition || that.options.zoom) that._transitionTime(0);
+        
+        if (that.options.useTransition) that._transitionTime(0);
 
         that.moved = false;
         that.animating = false;
@@ -1642,18 +1481,6 @@ iScroll.prototype = {
         that.absDistY = 0;
         that.dirX = 0;
         that.dirY = 0;
-
-        // Gesture start
-        if (that.options.zoom && hasTouch && e.touches.length > 1) {
-            c1 = m.abs(e.touches[0].pageX-e.touches[1].pageX);
-            c2 = m.abs(e.touches[0].pageY-e.touches[1].pageY);
-            that.touchesDistStart = m.sqrt(c1 * c1 + c2 * c2);
-
-            that.originX = m.abs(e.touches[0].pageX + e.touches[1].pageX - that.wrapperOffsetLeft * 2) / 2 - that.x;
-            that.originY = m.abs(e.touches[0].pageY + e.touches[1].pageY - that.wrapperOffsetTop * 2) / 2 - that.y;
-
-            if (that.options.onZoomStart) that.options.onZoomStart.call(that, e);
-        }
 
         if (that.options.momentum) {
             if (that.options.useTransform) {
@@ -1698,34 +1525,9 @@ iScroll.prototype = {
             deltaY = point.pageY - that.pointY,
             newX = that.x + deltaX,
             newY = that.y + deltaY,
-            c1, c2, scale,
             timestamp = e.timeStamp || Date.now();
 
         if (that.options.onBeforeScrollMove) that.options.onBeforeScrollMove.call(that, e);
-
-        // Zoom
-        if (that.options.zoom && hasTouch && e.touches.length > 1) {
-            c1 = m.abs(e.touches[0].pageX - e.touches[1].pageX);
-            c2 = m.abs(e.touches[0].pageY - e.touches[1].pageY);
-            that.touchesDist = m.sqrt(c1*c1+c2*c2);
-
-            that.zoomed = true;
-
-            scale = 1 / that.touchesDistStart * that.touchesDist * this.scale;
-
-            if (scale < that.options.zoomMin) scale = 0.5 * that.options.zoomMin * Math.pow(2.0, scale / that.options.zoomMin);
-            else if (scale > that.options.zoomMax) scale = 2.0 * that.options.zoomMax * Math.pow(0.5, that.options.zoomMax / scale);
-
-            that.lastScale = scale / this.scale;
-
-            newX = this.originX - this.originX * that.lastScale + this.x,
-            newY = this.originY - this.originY * that.lastScale + this.y;
-
-            this.scroller.style[vendor + 'Transform'] = trnOpen + newX + 'px,' + newY + 'px' + trnClose + ' scale(' + scale + ')';
-
-            if (that.options.onZoom) that.options.onZoom.call(that, e);
-            return;
-        }
 
         that.pointX = point.pageX;
         that.pointY = point.pageY;
@@ -1734,8 +1536,8 @@ iScroll.prototype = {
         if (newX > 0 || newX < that.maxScrollX) {
             newX = that.options.bounce ? that.x + (deltaX / 2) : newX >= 0 || that.maxScrollX >= 0 ? 0 : that.maxScrollX;
         }
-        if (newY > that.minScrollY || newY < that.maxScrollY) { 
-            newY = that.options.bounce ? that.y + (deltaY / 2) : newY >= that.minScrollY || that.maxScrollY >= 0 ? that.minScrollY : that.maxScrollY;
+        if (newY > 0 || newY < that.maxScrollY) { 
+            newY = that.options.bounce ? that.y + (deltaY / 2) : newY >= 0 || that.maxScrollY >= 0 ? 0 : that.maxScrollY;
         }
 
         if (that.absDistX < 6 && that.absDistY < 6) {
@@ -1783,10 +1585,7 @@ iScroll.prototype = {
             duration = (e.timeStamp || Date.now()) - that.startTime,
             newPosX = that.x,
             newPosY = that.y,
-            distX, distY,
-            newDuration,
-            snap,
-            scale;
+            newDuration;
 
         that._unbind(MOVE_EV);
         that._unbind(END_EV);
@@ -1794,57 +1593,20 @@ iScroll.prototype = {
 
         if (that.options.onBeforeScrollEnd) that.options.onBeforeScrollEnd.call(that, e);
 
-        if (that.zoomed) {
-            scale = that.scale * that.lastScale;
-            scale = Math.max(that.options.zoomMin, scale);
-            scale = Math.min(that.options.zoomMax, scale);
-            that.lastScale = scale / that.scale;
-            that.scale = scale;
-
-            that.x = that.originX - that.originX * that.lastScale + that.x;
-            that.y = that.originY - that.originY * that.lastScale + that.y;
-            
-            that.scroller.style[vendor + 'TransitionDuration'] = '200ms';
-            that.scroller.style[vendor + 'Transform'] = trnOpen + that.x + 'px,' + that.y + 'px' + trnClose + ' scale(' + that.scale + ')';
-            
-            that.zoomed = false;
-            that.refresh();
-
-            if (that.options.onZoomEnd) that.options.onZoomEnd.call(that, e);
-            return;
-        }
-
         if (!that.moved) {
             if (hasTouch) {
-                if (that.doubleTapTimer && that.options.zoom) {
-                    // Double tapped
-                    clearTimeout(that.doubleTapTimer);
-                    that.doubleTapTimer = null;
-                    if (that.options.onZoomStart) that.options.onZoomStart.call(that, e);
-                    that.zoom(that.pointX, that.pointY, that.scale == 1 ? that.options.doubleTapZoom : 1);
-                    if (that.options.onZoomEnd) {
-                        setTimeout(function() {
-                            that.options.onZoomEnd.call(that, e);
-                        }, 200); // 200 is default zoom duration
-                    }
-                } else {
-                    that.doubleTapTimer = setTimeout(function () {
-                        that.doubleTapTimer = null;
+                // Find the last touched element
+                target = point.target;
+                while (target.nodeType != 1) target = target.parentNode;
 
-                        // Find the last touched element
-                        target = point.target;
-                        while (target.nodeType != 1) target = target.parentNode;
-
-                        if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA') {
-                            ev = document.createEvent('MouseEvents');
-                            ev.initMouseEvent('click', true, true, e.view, 1,
-                                point.screenX, point.screenY, point.clientX, point.clientY,
-                                e.ctrlKey, e.altKey, e.shiftKey, e.metaKey,
-                                0, null);
-                            ev._fake = true;
-                            target.dispatchEvent(ev);
-                        }
-                    }, that.options.zoom ? 250 : 0);
+                if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA') {
+                    ev = document.createEvent('MouseEvents');
+                    ev.initMouseEvent('click', true, true, e.view, 1,
+                        point.screenX, point.screenY, point.clientX, point.clientY,
+                        e.ctrlKey, e.altKey, e.shiftKey, e.metaKey,
+                        0, null);
+                    ev._fake = true;
+                    target.dispatchEvent(ev);
                 }
             }
 
@@ -1856,46 +1618,19 @@ iScroll.prototype = {
 
         if (duration < 300 && that.options.momentum) {
             momentumX = newPosX ? that._momentum(newPosX - that.startX, duration, -that.x, that.scrollerW - that.wrapperW + that.x, that.options.bounce ? that.wrapperW : 0) : momentumX;
-            momentumY = newPosY ? that._momentum(newPosY - that.startY, duration, -that.y, (that.maxScrollY < 0 ? that.scrollerH - that.wrapperH + that.y - that.minScrollY : 0), that.options.bounce ? that.wrapperH : 0) : momentumY;
+            momentumY = newPosY ? that._momentum(newPosY - that.startY, duration, -that.y, (that.maxScrollY < 0 ? that.scrollerH - that.wrapperH + that.y : 0), that.options.bounce ? that.wrapperH : 0) : momentumY;
 
             newPosX = that.x + momentumX.dist;
             newPosY = that.y + momentumY.dist;
 
             if ((that.x > 0 && newPosX > 0) || (that.x < that.maxScrollX && newPosX < that.maxScrollX)) momentumX = { dist:0, time:0 };
-            if ((that.y > that.minScrollY && newPosY > that.minScrollY) || (that.y < that.maxScrollY && newPosY < that.maxScrollY)) momentumY = { dist:0, time:0 };
+            if ((that.y > 0 && newPosY > 0) || (that.y < that.maxScrollY && newPosY < that.maxScrollY)) momentumY = { dist:0, time:0 };
         }
 
         if (momentumX.dist || momentumY.dist) {
             newDuration = m.max(m.max(momentumX.time, momentumY.time), 10);
 
-            // Do we need to snap?
-            if (that.options.snap) {
-                distX = newPosX - that.absStartX;
-                distY = newPosY - that.absStartY;
-                if (m.abs(distX) < that.options.snapThreshold && m.abs(distY) < that.options.snapThreshold) { that.scrollTo(that.absStartX, that.absStartY, 200); }
-                else {
-                    snap = that._snap(newPosX, newPosY);
-                    newPosX = snap.x;
-                    newPosY = snap.y;
-                    newDuration = m.max(snap.time, newDuration);
-                }
-            }
-
-            that.scrollTo(m.round(newPosX), m.round(newPosY), newDuration);
-
-            if (that.options.onTouchEnd) that.options.onTouchEnd.call(that, e);
-            return;
-        }
-
-        // Do we need to snap?
-        if (that.options.snap) {
-            distX = newPosX - that.absStartX;
-            distY = newPosY - that.absStartY;
-            if (m.abs(distX) < that.options.snapThreshold && m.abs(distY) < that.options.snapThreshold) that.scrollTo(that.absStartX, that.absStartY, 200);
-            else {
-                snap = that._snap(that.x, that.y);
-                if (snap.x != that.x || snap.y != that.y) that.scrollTo(snap.x, snap.y, snap.time);
-            }
+            that.scrollTo(newPosX, newPosY, newDuration);
 
             if (that.options.onTouchEnd) that.options.onTouchEnd.call(that, e);
             return;
@@ -1908,74 +1643,18 @@ iScroll.prototype = {
     _resetPos: function (time) {
         var that = this,
             resetX = that.x >= 0 ? 0 : that.x < that.maxScrollX ? that.maxScrollX : that.x,
-            resetY = that.y >= that.minScrollY || that.maxScrollY > 0 ? that.minScrollY : that.y < that.maxScrollY ? that.maxScrollY : that.y;
+            resetY = that.y >= 0 || that.maxScrollY > 0 ? 0 : that.y < that.maxScrollY ? that.maxScrollY : that.y;
 
         if (resetX == that.x && resetY == that.y) {
             if (that.moved) {
-                that.moved = false;
                 if (that.options.onScrollEnd) that.options.onScrollEnd.call(that);      // Execute custom code on scroll end
-            }
-
-            if (that.hScrollbar && that.options.hideScrollbar) {
-                if (vendor == 'webkit') that.hScrollbarWrapper.style[vendor + 'TransitionDelay'] = '300ms';
-                that.hScrollbarWrapper.style.opacity = '0';
-            }
-            if (that.vScrollbar && that.options.hideScrollbar) {
-                if (vendor == 'webkit') that.vScrollbarWrapper.style[vendor + 'TransitionDelay'] = '300ms';
-                that.vScrollbarWrapper.style.opacity = '0';
+                that.moved = false;
             }
 
             return;
         }
 
         that.scrollTo(resetX, resetY, time || 0);
-    },
-
-    _wheel: function (e) {
-        var that = this,
-            wheelDeltaX, wheelDeltaY,
-            deltaX, deltaY,
-            deltaScale;
-
-        if ('wheelDeltaX' in e) {
-            wheelDeltaX = e.wheelDeltaX / 12;
-            wheelDeltaY = e.wheelDeltaY / 12;
-        } else if ('detail' in e) {
-            wheelDeltaX = wheelDeltaY = -e.detail * 3;
-        } else {
-            wheelDeltaX = wheelDeltaY = -e.wheelDelta;
-        }
-        
-        if (that.options.wheelAction == 'zoom') {
-            deltaScale = that.scale * Math.pow(2, 1/3 * (wheelDeltaY ? wheelDeltaY / Math.abs(wheelDeltaY) : 0));
-            if (deltaScale < that.options.zoomMin) deltaScale = that.options.zoomMin;
-            if (deltaScale > that.options.zoomMax) deltaScale = that.options.zoomMax;
-            
-            if (deltaScale != that.scale) {
-                if (!that.wheelZoomCount && that.options.onZoomStart) that.options.onZoomStart.call(that, e);
-                that.wheelZoomCount++;
-                
-                that.zoom(e.pageX, e.pageY, deltaScale, 400);
-                
-                setTimeout(function() {
-                    that.wheelZoomCount--;
-                    if (!that.wheelZoomCount && that.options.onZoomEnd) that.options.onZoomEnd.call(that, e);
-                }, 400);
-            }
-            
-            return;
-        }
-        
-        deltaX = that.x + wheelDeltaX;
-        deltaY = that.y + wheelDeltaY;
-
-        if (deltaX > 0) deltaX = 0;
-        else if (deltaX < that.maxScrollX) deltaX = that.maxScrollX;
-
-        if (deltaY > that.minScrollY) deltaY = that.minScrollY;
-        else if (deltaY < that.maxScrollY) deltaY = that.maxScrollY;
-
-        that.scrollTo(deltaX, deltaY, 0);
     },
     
     _mouseout: function (e) {
@@ -2001,7 +1680,6 @@ iScroll.prototype = {
         that._startAni();
     },
 
-
     /**
      *
      * Utilities
@@ -2011,23 +1689,22 @@ iScroll.prototype = {
         var that = this,
             startX = that.x, startY = that.y,
             startTime = Date.now(),
-            step, easeOut,
-            animate;
+            step, easeOut;
 
         if (that.animating) return;
-        
+
         if (!that.steps.length) {
             that._resetPos(400);
             return;
         }
-        
+
         step = that.steps.shift();
-        
+
         if (step.x == startX && step.y == startY) step.time = 0;
 
         that.animating = true;
         that.moved = true;
-        
+
         if (that.options.useTransition) {
             that._transitionTime(step.time);
             that._pos(step.x, step.y);
@@ -2037,7 +1714,7 @@ iScroll.prototype = {
             return;
         }
 
-        animate = function () {
+        (function animate () {
             var now = Date.now(),
                 newX, newY;
 
@@ -2055,18 +1732,13 @@ iScroll.prototype = {
             newY = (step.y - startY) * easeOut + startY;
             that._pos(newX, newY);
             if (that.animating) that.aniTime = nextFrame(animate);
-        };
-
-        animate();
+        })();
     },
 
     _transitionTime: function (time) {
-        time += 'ms';
-        this.scroller.style[vendor + 'TransitionDuration'] = time;
-        if (this.hScrollbar) this.hScrollbarIndicator.style[vendor + 'TransitionDuration'] = time;
-        if (this.vScrollbar) this.vScrollbarIndicator.style[vendor + 'TransitionDuration'] = time;
+        this.scroller.style[vendor + 'TransitionDuration'] = time + 'ms';
     },
-
+    
     _momentum: function (dist, time, maxDistUpper, maxDistLower, size) {
         var deceleration = 0.0006,
             speed = m.abs(dist) / time,
@@ -2099,54 +1771,9 @@ iScroll.prototype = {
         while (el = el.offsetParent) {
             left -= el.offsetLeft;
             top -= el.offsetTop;
-        }
-        
-        if (el != this.wrapper) {
-            left *= this.scale;
-            top *= this.scale;
-        }
+        } 
 
         return { left: left, top: top };
-    },
-
-    _snap: function (x, y) {
-        var that = this,
-            i, l,
-            page, time,
-            sizeX, sizeY;
-
-        // Check page X
-        page = that.pagesX.length - 1;
-        for (i=0, l=that.pagesX.length; i<l; i++) {
-            if (x >= that.pagesX[i]) {
-                page = i;
-                break;
-            }
-        }
-        if (page == that.currPageX && page > 0 && that.dirX < 0) page--;
-        x = that.pagesX[page];
-        sizeX = m.abs(x - that.pagesX[that.currPageX]);
-        sizeX = sizeX ? m.abs(that.x - x) / sizeX * 500 : 0;
-        that.currPageX = page;
-
-        // Check page Y
-        page = that.pagesY.length-1;
-        for (i=0; i<page; i++) {
-            if (y >= that.pagesY[i]) {
-                page = i;
-                break;
-            }
-        }
-        if (page == that.currPageY && page > 0 && that.dirY < 0) page--;
-        y = that.pagesY[page];
-        sizeY = m.abs(y - that.pagesY[that.currPageY]);
-        sizeY = sizeY ? m.abs(that.y - y) / sizeY * 500 : 0;
-        that.currPageY = page;
-
-        // Snap with constant speed (proportional duration)
-        time = m.round(m.max(sizeX, sizeY)) || 200;
-
-        return { x: x, y: y, time: time };
     },
 
     _bind: function (type, el, bubble) {
@@ -2168,103 +1795,43 @@ iScroll.prototype = {
 
         that.scroller.style[vendor + 'Transform'] = '';
 
-        // Remove the scrollbars
-        that.hScrollbar = false;
-        that.vScrollbar = false;
-        that._scrollbar('h');
-        that._scrollbar('v');
-
         // Remove the event listeners
         that._unbind(RESIZE_EV, window);
         that._unbind(START_EV);
         that._unbind(MOVE_EV);
         that._unbind(END_EV);
         that._unbind(CANCEL_EV);
-        
-        if (that.options.hasTouch) {
-            that._unbind('mouseout', that.wrapper);
-            that._unbind(WHEEL_EV);
-        }
-        
+        that._unbind('mouseout', that.wrapper);
         if (that.options.useTransition) that._unbind('webkitTransitionEnd');
-        
-        if (that.options.checkDOMChanges) clearInterval(that.checkDOMTime);
         
         if (that.options.onDestroy) that.options.onDestroy.call(that);
     },
 
     refresh: function () {
         var that = this,
-            offset,
-            i, l,
-            els,
-            pos = 0,
-            page = 0;
+            offset;
 
-        if (that.scale < that.options.zoomMin) that.scale = that.options.zoomMin;
-        that.wrapperW = that.wrapper.clientWidth || 1;
-        that.wrapperH = that.wrapper.clientHeight || 1;
+        that.wrapperW = that.wrapper.clientWidth;
+        that.wrapperH = that.wrapper.clientHeight;
 
-        that.minScrollY = -that.options.topOffset || 0;
-        that.scrollerW = m.round(that.scroller.offsetWidth * that.scale);
-        that.scrollerH = m.round((that.scroller.offsetHeight + that.minScrollY) * that.scale);
+        that.scrollerW = that.scroller.offsetWidth;
+        that.scrollerH = that.scroller.offsetHeight;
         that.maxScrollX = that.wrapperW - that.scrollerW;
-        that.maxScrollY = that.wrapperH - that.scrollerH + that.minScrollY;
+        that.maxScrollY = that.wrapperH - that.scrollerH;
         that.dirX = 0;
         that.dirY = 0;
 
-        if (that.options.onRefresh) that.options.onRefresh.call(that);
-
         that.hScroll = that.options.hScroll && that.maxScrollX < 0;
         that.vScroll = that.options.vScroll && (!that.options.bounceLock && !that.hScroll || that.scrollerH > that.wrapperH);
-
-        that.hScrollbar = that.hScroll && that.options.hScrollbar;
-        that.vScrollbar = that.vScroll && that.options.vScrollbar && that.scrollerH > that.wrapperH;
 
         offset = that._offset(that.wrapper);
         that.wrapperOffsetLeft = -offset.left;
         that.wrapperOffsetTop = -offset.top;
 
-        // Prepare snap
-        if (typeof that.options.snap == 'string') {
-            that.pagesX = [];
-            that.pagesY = [];
-            els = that.scroller.querySelectorAll(that.options.snap);
-            for (i=0, l=els.length; i<l; i++) {
-                pos = that._offset(els[i]);
-                pos.left += that.wrapperOffsetLeft;
-                pos.top += that.wrapperOffsetTop;
-                that.pagesX[i] = pos.left < that.maxScrollX ? that.maxScrollX : pos.left * that.scale;
-                that.pagesY[i] = pos.top < that.maxScrollY ? that.maxScrollY : pos.top * that.scale;
-            }
-        } else if (that.options.snap) {
-            that.pagesX = [];
-            while (pos >= that.maxScrollX) {
-                that.pagesX[page] = pos;
-                pos = pos - that.wrapperW;
-                page++;
-            }
-            if (that.maxScrollX%that.wrapperW) that.pagesX[that.pagesX.length] = that.maxScrollX - that.pagesX[that.pagesX.length-1] + that.pagesX[that.pagesX.length-1];
 
-            pos = 0;
-            page = 0;
-            that.pagesY = [];
-            while (pos >= that.maxScrollY) {
-                that.pagesY[page] = pos;
-                pos = pos - that.wrapperH;
-                page++;
-            }
-            if (that.maxScrollY%that.wrapperH) that.pagesY[that.pagesY.length] = that.maxScrollY - that.pagesY[that.pagesY.length-1] + that.pagesY[that.pagesY.length-1];
-        }
+        that.scroller.style[vendor + 'TransitionDuration'] = '0';
 
-        // Prepare the scrollbars
-        that._scrollbar('h');
-        that._scrollbar('v');
-
-        if (!that.zoomed) {
-            that.scroller.style[vendor + 'TransitionDuration'] = '0';
-            that._resetPos(200);
-        }
+        that._resetPos(200);
     },
 
     scrollTo: function (x, y, time, relative) {
@@ -2294,36 +1861,10 @@ iScroll.prototype = {
         pos.top += that.wrapperOffsetTop;
 
         pos.left = pos.left > 0 ? 0 : pos.left < that.maxScrollX ? that.maxScrollX : pos.left;
-        pos.top = pos.top > that.minScrollY ? that.minScrollY : pos.top < that.maxScrollY ? that.maxScrollY : pos.top;
+        pos.top = pos.top > 0 ? 0 : pos.top < that.maxScrollY ? that.maxScrollY : pos.top;
         time = time === undefined ? m.max(m.abs(pos.left)*2, m.abs(pos.top)*2) : time;
 
         that.scrollTo(pos.left, pos.top, time);
-    },
-
-    scrollToPage: function (pageX, pageY, time) {
-        var that = this, x, y;
-
-        if (that.options.onScrollStart) that.options.onScrollStart.call(that);
-
-        if (that.options.snap) {
-            pageX = pageX == 'next' ? that.currPageX+1 : pageX == 'prev' ? that.currPageX-1 : pageX;
-            pageY = pageY == 'next' ? that.currPageY+1 : pageY == 'prev' ? that.currPageY-1 : pageY;
-
-            pageX = pageX < 0 ? 0 : pageX > that.pagesX.length-1 ? that.pagesX.length-1 : pageX;
-            pageY = pageY < 0 ? 0 : pageY > that.pagesY.length-1 ? that.pagesY.length-1 : pageY;
-
-            that.currPageX = pageX;
-            that.currPageY = pageY;
-            x = that.pagesX[pageX];
-            y = that.pagesY[pageY];
-        } else {
-            x = -that.wrapperW * pageX;
-            y = -that.wrapperH * pageY;
-            if (x < that.maxScrollX) x = that.maxScrollX;
-            if (y < that.maxScrollY) y = that.maxScrollY;
-        }
-
-        that.scrollTo(x, y, time || 400);
     },
 
     disable: function () {
@@ -2342,47 +1883,17 @@ iScroll.prototype = {
     },
     
     stop: function () {
-        if (this.options.useTransition) this._unbind('webkitTransitionEnd');
-        else cancelFrame(this.aniTime);
+        cancelFrame(this.aniTime);
         this.steps = [];
         this.moved = false;
         this.animating = false;
-    },
-    
-    zoom: function (x, y, scale, time) {
-        var that = this,
-            relScale = scale / that.scale;
-
-        if (!that.options.useTransform) return;
-
-        that.zoomed = true;
-        time = time === undefined ? 200 : time;
-        x = x - that.wrapperOffsetLeft - that.x;
-        y = y - that.wrapperOffsetTop - that.y;
-        that.x = x - x * relScale + that.x;
-        that.y = y - y * relScale + that.y;
-
-        that.scale = scale;
-        that.refresh();
-
-        that.x = that.x > 0 ? 0 : that.x < that.maxScrollX ? that.maxScrollX : that.x;
-        that.y = that.y > that.minScrollY ? that.minScrollY : that.y < that.maxScrollY ? that.maxScrollY : that.y;
-
-        that.scroller.style[vendor + 'TransitionDuration'] = time + 'ms';
-        that.scroller.style[vendor + 'Transform'] = trnOpen + that.x + 'px,' + that.y + 'px' + trnClose + ' scale(' + scale + ')';
-        that.zoomed = false;
-    },
-    
-    isReady: function () {
-        return !this.moved && !this.zoomed && !this.animating;
     }
 };
 
 if (typeof exports !== 'undefined') exports.iScroll = iScroll;
 else window.iScroll = iScroll;
 
-})();
-/* 
+})();/* 
  * Copyright 2011 DoAT. All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without modification, are
@@ -2496,107 +2007,7 @@ function Doat_Scroll(){
                     else{
                         $innerEl[0].style.width = '100%';
                     }
-                    
-                    if (cfg.pullToRefresh === id) {                                              
-                        
-                        var pullDownContainer = 'touchy-pulldown',
-                            pullDownIconClass = 'touchy-pulldown-icon',
-                            pullDownFlipClass = 'touchy-pulldown-flip',
-                            pullDownLoadingClass = 'touchy-pulldown-loading',
-                            pullDownLabelClass = 'touchy-pulldown-label',
-                            pullDownLabelText = {'pull':'Pull down to refresh...',
-                                                 'release':'Release to refresh...',
-                                                 'loading':'Loading...'};                            
-                        
-                        var css = '#'+pullDownContainer+' {'+                        
-                                  '     background:#000000;'+
-                                  '     height:40px;'+
-                                  '     line-height:40px;'+
-                                  '     padding:5px 10px;'+                                  
-                                  '     font-weight:bold;'+
-                                  '     font-size:14px;'+
-                                  '     color:#888888;'+
-                                  '     visibility:hidden'+
-                                  '}'+                        
-                                  '#'+pullDownContainer+' .'+pullDownIconClass+' {'+
-                                  '     display:block; float:left;'+
-                                  '     width:40px; height:40px;'+                                                        
-                                  '     background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAACgCAMAAACsXRuGAAAAt1BMVEX////FxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcU7SVrkAAAAPHRSTlMAAPONxyCMRvCjM2n59gzeD/xssVo52Akwh6sDpeTbckJLZroqfhUnRernVxifG9XDgb2ZzzxjeLThEmBcLCjmAAACDklEQVR4Xu2Y124yQQyFM9sh9BJafgik956/7fs/V4RCwiITbMdjCSGfKy4On7THnuLZ8yGTyRWUr1W54NgNIC4Dbm+VrQ+tbQxoQAMa0IAGnO4vtR44WBquCcBuJadrSslwQucNaBm2qbyHEQ3YqNN4l3fUKpdpMV7Q26ZF4T3S+5AU49OIA8RjvLpxDCAeY/PIcYB4jKf8tTzcxDt2fGBt/D3v19kPgK5fRQLkAt0MCZANdIdIgGxg7WBjgHygO1kTY/NVMla8QeBvJwHCGP84CRDG+PefBAhjrHTlo9n/InDiY9a7XfLazgewd//Jqze8AN15sAiw7Gu87XwAW/7m5ec5b+j8AXsveT6uSYAwxmrf7xNBZ+aYQJPJZDLh+20aRlkWhen8twdgnCyO0SCJfQDjUv6lUuwBmOQFJXJgGhSBQSoGhvmKQnFNo1VgBD3MmmarwAx6WDWFQOhh1RR+MvSwagqLwqw7/ndW3UkfCD2bhJcAephAvJGYn4y3OrMouIfZNriH19i4h7v0cI9ww4ce4ZEEPTt6/uJ+UdS4H28G1C9qV9yPLyjUL1vyuB/dlLh+dNtE/dpA+SdrF0XeNsqNLV96+puDfPvaaukfUvJjVP+gl19F9C9L8uuc/oVTfiXWv7TLxwr9wUc+msmHR/3xVj6A6z8RSBej/jMLp+76T1X6j2m7eP6aTO9STHV4CXebKAAAAABJRU5ErkJggg%3D%3D); 0 0 no-repeat;'+
-                                  '     -webkit-background-size:40px 80px; background-size:40px 80px;'+
-                                  '     -webkit-transition-property:-webkit-transform;'+
-                                  '     -webkit-transition-duration:250ms;'+
-                                  '     -webkit-transform:rotate(0deg) translateZ(0);'+  
-                                  '}'+                                
-                                  '#'+pullDownContainer+'.'+pullDownFlipClass+' .'+pullDownIconClass+' {'+
-                                  '     -webkit-transform:rotate(-180deg) translateZ(0);'+
-                                  '}'+                                                  
-                                  '#'+pullDownContainer+'.'+pullDownLoadingClass+' .'+pullDownIconClass+' {'+
-                                  '     background-position:0 100%;'+
-                                  '     -webkit-transform:rotate(0deg) translateZ(0);'+
-                                  '     -webkit-transition-duration:0ms;'+                     
-                                  '     -webkit-animation-name:'+pullDownLoadingClass+';'+
-                                  '     -webkit-animation-duration:2s;'+
-                                  '     -webkit-animation-iteration-count:infinite;'+
-                                  '     -webkit-animation-timing-function:linear;'+
-                                  '}'+                             
-                                  '@-webkit-keyframes '+pullDownLoadingClass+' {'+
-                                  '     from { -webkit-transform:rotate(0deg) translateZ(0); }'+
-                                  '     to { -webkit-transform:rotate(360deg) translateZ(0); }'+
-                                  '}';
-                        
-                        create('style',head,{
-                             type:'text/css',
-                             innerHTML: css
-                        });
-                        
-                        var html = '<div id="'+pullDownContainer+'">'+
-                                   '    <span class="'+pullDownIconClass+'"></span>'+
-                                   '    <span class="'+pullDownLabelClass+'">'+pullDownLabelText.pull+'</span>'+
-                                   '</div>';  
-                                   
-                        $innerEl.prepend(html);
-                        
-                        $pullDownElement = $('#'+pullDownContainer);
-                        $pullDownLabelClass = $pullDownElement.find('.'+pullDownLabelClass);
-                        
-                        pullDownOffset = $pullDownElement[0].offsetHeight; 
-                        
-                        var extraConfig = {
-                          "onRefresh" : function() { 
-                                $pullDownElement.css('visibility','visible');  
-                                $pullDownElement.removeAttr('class');
-                                $pullDownLabelClass.html(pullDownLabelText.pull);                                                                                                          
-                          },
-                          "onScrollMove" : function() {                            
-                                if (this.y > 5 && !$pullDownElement.hasClass(pullDownFlipClass)) {
-                                    $pullDownElement.addClass(pullDownFlipClass);
-                                    $pullDownLabelClass.html(pullDownLabelText.release);
-                                    this.minScrollY = 0;
-                                } else if (this.y < 5 && $pullDownElement.hasClass(pullDownFlipClass)) {
-                                     $pullDownElement.removeAttr('class');
-                                    $pullDownLabelClass.html(pullDownLabelText.pull);
-                                    this.minScrollY = -pullDownOffset;
-                                }
-                          },
-                          "onScrollEnd" : function() {
-                              if ($pullDownElement.hasClass(pullDownFlipClass)) {
-                                  $pullDownElement.removeAttr('class');
-                                  //$pullDownElement.addClass(pullDownLoadingClass);
-                                  $pullDownLabelClass.html(pullDownLabelText.loading);
-                                  if (doat_config.pullToRefreshCB) {
-                                      doat_config.pullToRefreshCB();
-                                  } 
-                                  iscrollArr[id].refresh.call(iscrollArr[id]);
-                                  //callback
-                                  // myScroll.refresh();
-                              }
-                          },
-                          "topOffset" : pullDownOffset,
-                          "useTransition": true          
-                        };
-                          
-                        for (k in extraConfig) config[k] = extraConfig[k];                         
-                    }                    
+                                  
                     
                     iscrollArr[id] = new iScroll(id, config);
                     //iscrollArr[id] = {refresh:function(){}, scrollTo: function(){}};   
@@ -2619,8 +2030,8 @@ function Doat_Scroll(){
         cfg = _cfg;
         $container = $(document.body);
         
-        MainObj = window.Doat || window.TouchyJS;
-        classnamePrefix = window.Doat ? 'doml_' : 'touchyjs-';
+        MainObj = typeof mainObj != "undefined" && mainObj || window.TouchyJS;
+        classnamePrefix = 'touchyjs-';
         contentClassName = classnamePrefix+'content';
         headerClassName = classnamePrefix+'header';
         contentInnerClassName = classnamePrefix+'scrollable';
@@ -2897,7 +2308,7 @@ function enableCssAnim(platform, browser, Log){
         else{
             Log && Log.info('not including cfg[\''+CSS_PREFIX+'transform\'] = \'translate3d(0px, 0px, 0px) rotate(0deg) scale(1)\'');
         }
-        $('.doml_content').css(cfg);
+        $('.touchyjs-content').css(cfg);
     }
 }
 
@@ -2966,9 +2377,8 @@ var hasher=(function(i){var m=25,n=i.document,a=i.location,l=i.history,s=signals
 * @class
 */
 var Doat_Navigation = function(){
-    var MainObj = typeof Doat != 'undefined' ? Doat : TouchyJS,
-        classnamePrefix = typeof Doat != 'undefined' ? 'doml_' : 'touchyjs-',
-        isMobile = MainObj.Env.isMobile(),
+    var classnamePrefix = 'touchyjs-',
+        isMobile = mainObj.Env.isMobile(),
         $currentElement,
         $previousElement,
         currentElementHeight,
@@ -2980,7 +2390,7 @@ var Doat_Navigation = function(){
         isNavigating = false,
         firstPageId;
 
-    var b = MainObj.Env.getInfo().browser.name || MainObj.Env.getInfo().browser;
+    var b = mainObj.Env.getInfo().browser.name || mainObj.Env.getInfo().browser;
     CSS_PREFIX = b === 'webkit' ? '-webkit-' : b === 'mozilla' ? '-moz-' : '';
 
     var init = function(_cfg){
@@ -3102,7 +2512,7 @@ var Doat_Navigation = function(){
             if (options && options.id && options.id.replace){
                 props.id = options.id.replace('/', '-');
             }
-            if (MainObj.Messenger) {MainObj.Messenger.trigger(MainObj.Events.USER_ACTION, props)};
+            if (mainObj.Messenger) {mainObj.Messenger.trigger(mainObj.Events.USER_ACTION, props)};
         }
 
         return true;
@@ -3555,11 +2965,11 @@ function removeListener(){
 function Main(){
     var self = this,
         $document, head = document.getElementsByTagName('HEAD')[0],
-        DOML, Env, Navigation, Searchbar, Scroll, Slider, Swiper, envInfo,
+        DOML, Env, Nav, Searchbar, Scroll, Slider, Swiper, envInfo,
         cfg = {};
 
-    if (typeof doat_config !== 'undefined'){
-        cfg = aug(cfg, doat_config);
+    if (window.touchyjsConfig){
+        cfg = aug(cfg, touchyjsConfig);
     }
 
     this.init = init;
@@ -3625,8 +3035,8 @@ function Main(){
         Scroll = new Doat_Scroll();
         self.Scroll = Scroll;
 
-        Navigation = new Doat_Navigation();
-        self.Navigation = self.Nav = Navigation;
+        Nav = new Doat_Navigation();
+        self.Nav = Nav;
 
         // Event handlers
         self.Events.focused(function(){
@@ -3650,12 +3060,13 @@ function Main(){
             DOML.parse();
 
             Scroll.init(cfg);
-            Navigation.init(cfg);
+            Nav.init(cfg);
 
-            addClass(document.body, 'doml-env-'+envInfo.platform.name);
+            addClass(document.body, envInfo.platform.name+" "+envInfo.browser.name);
+            addClass(document.body, Env.isTouch() ? 'touch' : 'no-touch');
 
             if (Env.isMobile()){
-                addClass(document.body, 'doml-env-mobile');
+                //addClass(document.body, 'mobile');
                 if (cfg.webkitAnimation !== false){
                     enableCssAnim(envInfo.platform.name, envInfo.browser.name, self.Log);
                 }
@@ -3714,44 +3125,6 @@ function Main(){
         return self.params.query;
     }
 
-    /**
-     * @method renderHTML
-     * @description Renders an HTML string according to template and data sent. Detrmines what to return according to the running platform.
-     * Possible key names:
-     * <ul>
-     * <li>'default'</li>
-     * <li>'web'</li>
-     * <li>'iphone'</li>
-     * <li>'ipad'</li>
-     * <li>'android'</li>
-     * <li>'windowsPhone'</li>
-     * <li>'symbian'</li>
-     * <li>'webOS'</li>
-     * </ul>
-     * Possible key combinations:
-     * <ul>
-     * <li>default</li>
-     * <li>platformName (e.g 'iphone')</li>
-     * <li>platformName[,platformName] (e.g 'iphone,android', 'web,default')<li>
-     * </ul>
-     * @param {String/Object} templates A string containing an HTML template or an object containing key-value pairs where the key is a platform name and the value is the html template associated.
-     * @param {Array} attrArr An associative array in which the keys are the replacement names in the template strings
-     * @return {string}
-     * @example
-     * var html = Doat.renderHTML('Hi! my name is {name}.', {'name': 'Joey'});
-     * // Returns 'Hi! My name is Joey.'
-     *
-     *
-     * var html = Doat.renderHTML({'iphone': 'This is an iphone version {ver}.'}, {'ver': '4.2'});
-     * // Returns 'This is an iphone version 4.2.' (if platform === 'iphone')
-     * // Returns '' (if platform === 'web')
-     *
-     *
-     * var html = Doat.renderHTML({'web': '<p class="web">{text}</p>', 'iphone,default': '<span class="mobile">{text}</span>'}, {'text': 'Just some text'});
-     * // Returns '<p class="web">Just some text</p>' (if platform === 'web')
-     * // Returns '<span class="mobile">Just some text</span>' (if platform === 'iphone')
-     * // Returns '<span class="mobile">Just some text</span>' (if platform === 'android')
-     */
      function renderHTML(templates, attrArr){
         var tmpl;
         // If a string was sent instead of an object
@@ -4018,9 +3391,9 @@ function Main(){
 }
 
 // Instantiate object
-var Doat = new Main();
-if (!window.doat_config || !doat_config.manualInit){
-    Doat.init();
+var mainObj = new Main();
+if (!window.touchyjsConfig || !touchyjsConfig.manualInit){
+    mainObj.init();
 }
 
     
@@ -4053,5 +3426,5 @@ if (!window.doat_config || !doat_config.manualInit){
  * or implied, of DoAT.
  */
 
-    window['Doat'] = Doat;
+    window['TouchyJS'] = mainObj;
 })();
