@@ -4,7 +4,7 @@
 ?>
 <!doctype html>
 <!-- For storing resources in offline cache -->
-<html manifest="cache.manifest">
+<html>
     <head>
         <meta charset="utf-8">
         <title></title>
@@ -35,40 +35,33 @@
             document.write('<link rel="stylesheet" href="css/normalize.css/' + csspath + '"><\/script>');
         </script>
         <!-- TouchyPHP:getFile lets you reduce http requests: http://labs.doat.com/touchyphp/#getFile -->
-        <? echo TouchyPHP::getFile('css/style.css'); ?>
+        <? echo TouchyPHP::getFile('css/style.css'); ?>        
+        <? echo TouchyPHP::getFile('css/demo.css', FALSE); ?>
 
         <!-- Hide content before rendering: http://labs.doat.com/touchyjs/#nav-dependancy  -->
         <style type="text/css"> .doml_content { display: none; } </style>
     </head>
     <body>
         <div class="doml_header">
-            header content
-            <a href="" onclick="Doat.Nav.goTo('page1'); return false;">Back home</a>
+            Header content
         </div>
         <div class="doml_content" id="page1">
-            <div>
-                <doml:searchbar onsubmit="search()" defaulttext="Type to search"></doml:searchbar>
+            <div>                
+                Content page 1 <br>
+                <br>
+                <a href="" onclick="Doat.Nav.goTo('page2'); return false;">Go to next page</a>
                 
-                Content page 1 <a href="" onclick="Doat.Nav.goTo('page2'); return false;">Next page</a>
-                <br /><br /><br />
-                <iframe width="300" frameborder="0" allowfullscreen="" src="http://www.youtube.com/embed/ntnKPA6TnQg?hl=en&amp;fs=1"></iframe>
-                <!-- TouchyPHP:getFile lets you reduce http requests: http://labs.doat.com/touchyphp/#getFile -->
-                <img src="<? echo TouchyPHP::getFile('img/splash.png');?>" alt="image" />
                 <br><br><br><br><br><br><br>
             </div>
         </div>
    
         <div class="doml_content" id="page2">
             <div>
-                Content page 2 <a href="" onclick="Doat.Nav.goTo('page3'); return false;">Next page</a>
-                <br />
-                <div id="heart"></div>
-            </div>
-        </div>
-        
-        <div class="doml_content" id="page3">
-            <div>
-                I really do <a href="" onclick="Doat.Nav.back(); return false;">Back</a>
+                Content page 2
+                <br>
+                <a href="" onclick="Doat.Nav.back(); return false;">Go back</a>
+                
+                <br><br><br><br><br><br><br>
             </div>
         </div>
         
@@ -76,13 +69,12 @@
             if(!isTouch) {
                 document.write('<script src="js/libs/jquery-1.6.2.min.js"><\/script>');
             } else {
-                document.write('<script src="http://developer.stg.doat.com/min/g=zepto.0.7"><\/script>');
+                document.write('<script src="http://developer.stg.doat.com/min/g=zepto.0.7&debug"><\/script>');
             }
-        </script>
-        
+        </script>        
         <script src="js/libs/touchy.min.js"></script>
         <script>
-            <? /*
+            <?/* 
                 include 'file:///home/ran/workspace/TouchyJS/src/header.js';
                 include 'file:///home/ran/workspace/TouchyJS/src/events.js';
                 include 'file:///home/ran/workspace/TouchyJS/src/env.js';
@@ -99,7 +91,7 @@
                 include 'file:///home/ran/workspace/TouchyJS/src/utils.js';
                 include 'file:///home/ran/workspace/TouchyJS/src/main.js';
                 include 'file:///home/ran/workspace/TouchyJS/src/footer.js';
-            */?>
+           */ ?>
         </script>        
 
         <!-- TouchyPHP:getFile lets you reduce http requests: http://labs.doat.com/touchyphp/#getFile -->
