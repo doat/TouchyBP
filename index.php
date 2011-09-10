@@ -1,6 +1,6 @@
 <?php
     // PHP performance tools: https://github.com/doat/TouchyPHP
-    require "build/tools/TouchyPHP.php";
+    require "php/TouchyPHP.php";
 ?>
 <!doctype html>
 <!-- For storing resources in offline cache -->
@@ -21,9 +21,9 @@
         <!-- Initial configuration script -->
         <script>
             // Determines if the agent has a touch interface:  http://labs.doat.com/touchybp/#istouch
-            var isTouch = location.href.indexOf('istouch=true') ? true : ('ontouchstart' in window);
+            var isTouch = location.href.indexOf('istouch=true') !== -1 ? true : ('ontouchstart' in window);
             // TouchyJs configuration: http://labs.doat.com/touchyjs/#configuration
-            var touchyjsConfig = {
+            var doat_config = {
                 'fixedPositioning': true, // default
                 'browserHistory': true // default
             };
@@ -38,16 +38,18 @@
         <? echo TouchyPHP::getFile('css/style.css'); ?>
 
         <!-- Hide content before rendering: http://labs.doat.com/touchyjs/#nav-dependancy  -->
-        <style type="text/css"> .touchyjs-content { display: none; } </style>
+        <style type="text/css"> .doml_content { display: none; } </style>
     </head>
     <body>
-        <div class="touchyjs-header">
+        <div class="doml_header">
             header content
-            <a href="" onclick="TouchyJS.Nav.goTo('search')">Back home</a>
+            <a href="" onclick="Doat.Nav.goTo('page1'); return false;">Back home</a>
         </div>
-        <div class="touchyjs-content" id="search">
+        <div class="doml_content" id="page1">
             <div>
-                Content page 1 <a href="" onclick="TouchyJS.Nav.goTo('item'); return false;">Next page</a>
+                <doml:searchbar onsubmit="search()" defaulttext="Type to search"></doml:searchbar>
+                
+                Content page 1 <a href="" onclick="Doat.Nav.goTo('page2'); return false;">Next page</a>
                 <br /><br /><br />
                 <iframe width="300" frameborder="0" allowfullscreen="" src="http://www.youtube.com/embed/ntnKPA6TnQg?hl=en&amp;fs=1"></iframe>
                 <!-- TouchyPHP:getFile lets you reduce http requests: http://labs.doat.com/touchyphp/#getFile -->
@@ -56,33 +58,49 @@
             </div>
         </div>
    
-        <div class="touchyjs-content" id="item">
+        <div class="doml_content" id="page2">
             <div>
-                Content page 2 <a href="" onclick="TouchyJS.Nav.goTo('gila-sheli-i-love-u'); return false;">Ran to Gila</a>
+                Content page 2 <a href="" onclick="Doat.Nav.goTo('page3'); return false;">Next page</a>
                 <br />
-                <img src="http://upload.wikimedia.org/wikipedia/commons/5/52/Heart_icon_red_hollow.svg" alt="animated heart" id="heart" />
+                <div id="heart"></div>
             </div>
         </div>
         
-        <div class="touchyjs-content" id="gila-sheli-i-love-u">
+        <div class="doml_content" id="page3">
             <div>
-                I really do <a href="" onclick="TouchyJS.Nav.back(); return false;">Back</a>
+                I really do <a href="" onclick="Doat.Nav.back(); return false;">Back</a>
             </div>
         </div>
         
         <script>
             if(!isTouch) {
                 document.write('<script src="js/libs/jquery-1.6.2.min.js"><\/script>');
-                document.write('<script src="js/plugins/touche-min.js"><\/script>');
             } else {
-                //document.write('<script src="js/libs/zepto.0.7.min.js"><\/script>');
-                document.write('<script src="http://developer.loc.doat.com/min/g=zepto.0.7&debug"><\/script>');
+                document.write('<script src="http://developer.stg.doat.com/min/g=zepto.0.7"><\/script>');
             }
         </script>
         
-        <!--script src="js/libs/touchy.js"></script-->
-        <script src="http://developer.loc.doat.com/min/g=TouchyJS.boilerplate&debug"></script>
-        
+        <script src="js/libs/touchy.min.js"></script>
+        <script>
+            <? /*
+                include 'file:///home/ran/workspace/TouchyJS/src/header.js';
+                include 'file:///home/ran/workspace/TouchyJS/src/events.js';
+                include 'file:///home/ran/workspace/TouchyJS/src/env.js';
+                include 'file:///home/ran/workspace/TouchyJS/src/tml.js';
+                include 'file:///home/ran/workspace/TouchyJS/src/tmls/searchbar.js';
+                include 'file:///home/ran/workspace/TouchyJS/src/tmls/slider.js';
+                include 'file:///home/ran/workspace/TouchyJS/src/tmls/swiper.js';
+                include 'file:///home/ran/workspace/TouchyJS/src/plugins/iscroll.js';
+                include 'file:///home/ran/workspace/TouchyJS/src/scroll.js';
+                include 'file:///home/ran/workspace/TouchyJS/src/plugins/animate.js';
+                include 'file:///home/ran/workspace/TouchyJS/src/plugins/signals.min.js';
+                include 'file:///home/ran/workspace/TouchyJS/src/plugins/hasher.min.js';
+                include 'file:///home/ran/workspace/TouchyJS/src/nav.js';
+                include 'file:///home/ran/workspace/TouchyJS/src/utils.js';
+                include 'file:///home/ran/workspace/TouchyJS/src/main.js';
+                include 'file:///home/ran/workspace/TouchyJS/src/footer.js';
+            */?>
+        </script>        
 
         <!-- TouchyPHP:getFile lets you reduce http requests: http://labs.doat.com/touchyphp/#getFile -->
         <? echo TouchyPHP::getFile('js/script.js', FALSE);?>
