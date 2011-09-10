@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>TouchyJS - tml demo</title>
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">      
+        
+        <!-- Initial configuration script -->
+        <script>
+            // Determines if the agent has a touch interface:  http://labs.doat.com/touchybp/#istouch
+            var isTouch = location.href.indexOf('istouch=true') !== -1 ? true : ('ontouchstart' in window);
+            // TouchyJs configuration: http://labs.doat.com/touchyjs/#configuration
+            var touchyjsConfig = {
+                'fixedPositioning': true, // default
+                'browserHistory': true // default
+            };
+        </script>
+        
+        <!-- Normalize css by : http://labs.doat.com/touchybp/#normalize.mobile.css -->
+        <script> 
+            var csspath = isTouch ? 'normalize.mobile.css' : 'normalize.css';
+            document.write('<link rel="stylesheet" href="../../css/normalize.css/' + csspath + '"><\/script>');
+        </script>
+        
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <div class="touchyjs-header">   
+            <h2>&lt;tml&gt; tags</h2>    
+        </div>
+        <div class="touchyjs-content" id="page1">
+            <div>
+                <h2>&lt;tml:searchbar /&gt;</h2>
+                <p>
+                    Renders into an &lt;input&gt; within a &lt;form&gt; with mobile device keyboard compatibility.
+                    <tml:searchbar onsubmit="search" defaulttext="Search for something"></tml:searchbar>
+                </p>
+                
+                <h2>&lt;tml:image /&gt;</h2>
+                <p>
+                    On the fly server image resizing
+                    <tml:image src="http://www.doat.com/images/web_sprites.png" width="70" alt="resized to 70px"></tml:image>
+                    <tml:image src="http://www.doat.com/images/web_sprites.png" width="60" alt="resized to 60px"></tml:image>
+                    <tml:image src="http://www.doat.com/images/web_sprites.png" width="50" alt="resized to 50px"></tml:image>
+                </p>            
+                
+                <h2>TouchyJS.Swiper</h2>
+                <p>
+                    Image swiping touch component with autoplay
+                    <div id="swiper1">
+                        <ul class="items">
+                            <li style="background: red;">A</li>
+                            <li style="background: green;">B</li>
+                            <li style="background: blue;">C</li>
+                            <li style="background: gray;">D</li>
+                        </ul>
+                    </div>
+                </p>
+            </div>            
+        </div>
+        
+        <script>
+            if(!isTouch) {
+                document.write('<script src="../../js/libs/jquery-1.6.2.min.js"><\/script>');
+            } else {
+                document.write('<script src="http://developer.stg.doat.com/min/g=zepto.0.7&debug"><\/script>');
+            }
+        </script>        
+        <script src="../../js/libs/touchy.min.js"></script>
+        
+        <script>
+                TouchyJS.Events.ready(function(){
+                    document.body.addEventListener("touchmove", function(e){
+                        e.preventDefault();
+                    }, false);
+
+                    TouchyJS.Swiper.init({
+                        "element": $("#swiper1"),
+                        "itemsElement": $("#swiper1 .items"),
+                        "itemWidth": 308,
+                        "autoplay": 2000
+                    });
+                });
+        </script>
+    </body>
+</html>
