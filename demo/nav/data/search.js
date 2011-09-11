@@ -2,15 +2,17 @@
     "items": [
         {
             "id": 1,
-            "title": "item #1"
+            "title": "item #1 (slide)"
         },
         {
             "id": 2,
-            "title": "item #2"
+            "title": "item #2 (fade)",
+            "transition": "fade"
         },
         {
             "id": 3,
-            "title": "item #3"
+            "title": "item #3 (none)",
+            "transition": "none"
         },
         {
             "id": 4,

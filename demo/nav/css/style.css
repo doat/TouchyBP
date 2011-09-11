@@ -3,7 +3,7 @@ body {
     font-size: 12px;
     line-height: 20px;
 }
-.doml_header{
+.touchyjs-header{
     background: #1B5790;
     color: white;
     height: 56px;
@@ -58,10 +58,10 @@ A.btn-back {
         content:"";
     }
 
-.doml_content{
+.touchyjs-content{
     background: white;
 }
-.doml_content P{
+.touchyjs-content P{
     padding: 10px;
     font-size: 14px;
 }

@@ -68,16 +68,17 @@ function search(q){
     $page.find("ul").remove();
     var $ul = $("<ul>");
     $page.append($ul);
-    $page.find(".loading").show();
+    TouchyJS.Nav.Indicator.show();
     
     // get search results
-    $.getJSON('data/search.js?q='+q, function(response){
+    $.getJSON('data/search.js?v=2&q='+q, function(response){
         // hide "loading..."
-        $page.find(".loading").hide();
+        TouchyJS.Nav.Indicator.hide();
         
         // Render list items in to the page with their corresponding data
         response.items.forEach(function(data){
-            var $li = $("<li><a href='' onclick='TouchyJS.Nav.goTo(\"item\", {\"id\": \""+data.id+"\"}); return false;'>"+data.title+"</li>");
+            var transition = data.transition || "";
+            var $li = $("<li><a href='' onclick='TouchyJS.Nav.goTo(\"item\", {\"transition\": \""+transition+"\", \"id\": \""+data.id+"\"}); return false;'>"+data.title+"</li>");
             $ul.append($li);
         });
     });    
