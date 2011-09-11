@@ -72,27 +72,7 @@
                 document.write('<script src="http://developer.stg.doat.com/min/g=zepto.0.7&debug"><\/script>');
             }
         </script>        
-        <script src="js/libs/touchy.min.js"></script>
-        <script>
-            <?/*
-                include 'file:///home/ran/workspace/TouchyJS/src/header.js';
-                include 'file:///home/ran/workspace/TouchyJS/src/events.js';
-                include 'file:///home/ran/workspace/TouchyJS/src/env.js';
-                include 'file:///home/ran/workspace/TouchyJS/src/tml.js';
-                include 'file:///home/ran/workspace/TouchyJS/src/tmls/searchbar.js';
-                include 'file:///home/ran/workspace/TouchyJS/src/tmls/slider.js';
-                include 'file:///home/ran/workspace/TouchyJS/src/tmls/swiper.js';
-                include 'file:///home/ran/workspace/TouchyJS/src/plugins/iscroll-lite.js';
-                include 'file:///home/ran/workspace/TouchyJS/src/scroll.js';
-                include 'file:///home/ran/workspace/TouchyJS/src/plugins/animate.js';
-                include 'file:///home/ran/workspace/TouchyJS/src/plugins/signals.min.js';
-                include 'file:///home/ran/workspace/TouchyJS/src/plugins/hasher.min.js';
-                include 'file:///home/ran/workspace/TouchyJS/src/nav.js';
-                include 'file:///home/ran/workspace/TouchyJS/src/utils.js';
-                include 'file:///home/ran/workspace/TouchyJS/src/main.js';
-                include 'file:///home/ran/workspace/TouchyJS/src/footer.js';
-        */   ?>
-        </script>        
+        <script src="js/libs/touchy.min.js"></script>       
 
         <!-- TouchyPHP:getFile lets you reduce http requests: http://labs.doat.com/touchyphp/#getFile -->
         <? echo TouchyPHP::getFile('js/script.js', FALSE);?>
