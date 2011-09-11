@@ -1,4 +1,4 @@
- /* 
+/* 
  * Copyright 2011 DoAT. All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without modification, are
@@ -2189,6 +2189,34 @@ function Doat_Scroll(){
         return true;
     }
 }
+ /* 
+ * Copyright 2011 DoAT. All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without modification, are
+ * permitted provided that the following conditions are met:
+ * 
+ * 1. Redistributions of source code must retain the above copyright notice, this list of
+ *      conditions and the following disclaimer.
+ *
+ *   2. Redistributions in binary form must reproduce the above copyright notice, this list
+ *      of conditions and the following disclaimer in the documentation and/or other materials
+ *      provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY Do@ ``AS IS'' AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * The views and conclusions contained in the software and documentation are those of the
+ * authors and should not be interpreted as representing official policies, either expressed
+ * or implied, of DoAT.
+ */
+
 function enableCssAnim(platform, browser, Log){
     Log && Log.info('platform='+platform);
     var transfromKeys = ['scale', 'rotate', 'skew', 'translate', 'matrix'],    
@@ -2332,6 +2360,7 @@ function normalizeArguments(args){
     return val;
 }/*!
              * JS Signals <http://millermedeiros.github.com/js-signals/>
+
              * Released under the MIT license <http://www.opensource.org/licenses/mit-license.php>
              * @author Miller Medeiros <http://millermedeiros.com/>
              * @version 0.6.3
@@ -2340,11 +2369,307 @@ function normalizeArguments(args){
             (function(d){var b={VERSION:"0.6.3"};function c(i,h,f,g,e){this._listener=h;this._isOnce=f;this.context=g;this._signal=i;this._priority=e||0}c.prototype={active:true,params:null,execute:function(e){var g,f;if(this.active&&!!this._listener){f=this.params?this.params.concat(e):e;g=this._listener.apply(this.context,f);if(this._isOnce){this.detach()}}return g},detach:function(){return this.isBound()?this._signal.remove(this._listener):null},isBound:function(){return(!!this._signal&&!!this._listener)},getListener:function(){return this._listener},_destroy:function(){delete this._signal;delete this._listener;delete this.context},isOnce:function(){return this._isOnce},toString:function(){return"[SignalBinding isOnce: "+this._isOnce+", isBound: "+this.isBound()+", active: "+this.active+"]"}};function a(e,f){if(typeof e!=="function"){throw new Error("listener is a required param of {fn}() and should be a Function.".replace("{fn}",f))}}b.Signal=function(){this._bindings=[]};b.Signal.prototype={_shouldPropagate:true,active:true,_registerListener:function(i,h,g,f){var e=this._indexOfListener(i),j;if(e!==-1){j=this._bindings[e];if(j.isOnce()!==h){throw new Error("You cannot add"+(h?"":"Once")+"() then add"+(!h?"":"Once")+"() the same listener without removing the relationship first.")}}else{j=new c(this,i,h,g,f);this._addBinding(j)}return j},_addBinding:function(e){var f=this._bindings.length;do{--f}while(this._bindings[f]&&e._priority<=this._bindings[f]._priority);this._bindings.splice(f+1,0,e)},_indexOfListener:function(e){var f=this._bindings.length;while(f--){if(this._bindings[f]._listener===e){return f}}return -1},add:function(g,f,e){a(g,"add");return this._registerListener(g,false,f,e)},addOnce:function(g,f,e){a(g,"addOnce");return this._registerListener(g,true,f,e)},remove:function(f){a(f,"remove");var e=this._indexOfListener(f);if(e!==-1){this._bindings[e]._destroy();this._bindings.splice(e,1)}return f},removeAll:function(){var e=this._bindings.length;while(e--){this._bindings[e]._destroy()}this._bindings.length=0},getNumListeners:function(){return this._bindings.length},halt:function(){this._shouldPropagate=false},dispatch:function(f){if(!this.active){return}var e=Array.prototype.slice.call(arguments),h=this._bindings.slice(),g=this._bindings.length;this._shouldPropagate=true;do{g--}while(h[g]&&this._shouldPropagate&&h[g].execute(e)!==false)},dispose:function(){this.removeAll();delete this._bindings},toString:function(){return"[Signal active: "+this.active+" numListeners: "+this.getNumListeners()+"]"}};d.signals=b}(window||this));
 /*!
  * Hasher <http://github.com/millermedeiros/hasher>
+
  * @author Miller Medeiros
  * @version 1.0.0 (2011/08/03 10:49 PM)
  * Released under the MIT License
  */
-var hasher=(function(i){var m=25,n=i.document,a=i.location,l=i.history,s=signals.Signal,d,r,k,A,c,y,p=/#(.*)$/,h=/(\?.*)|(\#.*)/,e=/^\#/,g=(!+"\v1"),w=("onhashchange" in i),b=g&&!w,o=(a.protocol==="file:");function q(C){if(!C){return""}var B=new RegExp("^\\"+d.prependHash+"|\\"+d.appendHash+"$","g");return C.replace(B,"")}function z(){var B=p.exec(d.getURL());return(B&&B[1])?decodeURIComponent(B[1]):""}function v(){return(c)?c.contentWindow.frameHash:null}function u(){c=n.createElement("iframe");c.src="about:blank";c.style.display="none";n.body.appendChild(c)}function f(){if(c&&r!==v()){var B=c.contentWindow.document;B.open();B.write("<html><head><title>"+n.title+'</title><script type="text/javascript">var frameHash="'+r+'";<\/script></head><body>&nbsp;</body></html>');B.close()}}function j(B){B=decodeURIComponent(B);if(r!==B){var C=r;r=B;if(b){f()}d.changed.dispatch(q(B),q(C))}}y=(b)?function(){var C=z(),B=v();if(B!==r&&B!==C){d.setHash(q(B))}else{if(C!==r){j(C)}}}:function(){var B=z();if(B!==r){j(B)}};function x(D,B,C){if(D.addEventListener){D.addEventListener(B,C,false)}else{if(D.attachEvent){D.attachEvent("on"+B,C)}}}function t(D,B,C){if(D.removeEventListener){D.removeEventListener(B,C,false)}else{if(D.detachEvent){D.detachEvent("on"+B,C)}}}d={VERSION:"1.0.0",appendHash:"",prependHash:"/",separator:"/",changed:new s(),stopped:new s(),initialized:new s(),init:function(){if(A){return}r=z();if(w){x(i,"hashchange",y)}else{if(b){if(!c){u()}f()}k=setInterval(y,m)}A=true;d.initialized.dispatch(q(r))},stop:function(){if(!A){return}if(w){t(i,"hashchange",y)}else{clearInterval(k);k=null}A=false;d.stopped.dispatch(q(r))},isActive:function(){return A},getURL:function(){return a.href},getBaseURL:function(){return d.getURL().replace(h,"")},setHash:function(B){var C=Array.prototype.slice.call(arguments);B=C.join(d.separator);B=B?d.prependHash+B.replace(e,"")+d.appendHash:B;if(B!==r){j(B);if(g&&o){B=B.replace(/\?/,"%3F")}a.hash="#"+encodeURI(B)}},getHash:function(){return q(r)},getHashAsArray:function(){return d.getHash().split(d.separator)},dispose:function(){d.stop();d.initialized.dispose();d.stopped.dispose();d.changed.dispose();c=d=i.hasher=null},toString:function(){return'[hasher version="'+d.VERSION+'" hash="'+d.getHash()+'"]'}};return d}(window));/* 
+var hasher=(function(i){var m=25,n=i.document,a=i.location,l=i.history,s=signals.Signal,d,r,k,A,c,y,p=/#(.*)$/,h=/(\?.*)|(\#.*)/,e=/^\#/,g=(!+"\v1"),w=("onhashchange" in i),b=g&&!w,o=(a.protocol==="file:");function q(C){if(!C){return""}var B=new RegExp("^\\"+d.prependHash+"|\\"+d.appendHash+"$","g");return C.replace(B,"")}function z(){var B=p.exec(d.getURL());return(B&&B[1])?decodeURIComponent(B[1]):""}function v(){return(c)?c.contentWindow.frameHash:null}function u(){c=n.createElement("iframe");c.src="about:blank";c.style.display="none";n.body.appendChild(c)}function f(){if(c&&r!==v()){var B=c.contentWindow.document;B.open();B.write("<html><head><title>"+n.title+'</title><script type="text/javascript">var frameHash="'+r+'";<\/script></head><body>&nbsp;</body></html>');B.close()}}function j(B){B=decodeURIComponent(B);if(r!==B){var C=r;r=B;if(b){f()}d.changed.dispatch(q(B),q(C))}}y=(b)?function(){var C=z(),B=v();if(B!==r&&B!==C){d.setHash(q(B))}else{if(C!==r){j(C)}}}:function(){var B=z();if(B!==r){j(B)}};function x(D,B,C){if(D.addEventListener){D.addEventListener(B,C,false)}else{if(D.attachEvent){D.attachEvent("on"+B,C)}}}function t(D,B,C){if(D.removeEventListener){D.removeEventListener(B,C,false)}else{if(D.detachEvent){D.detachEvent("on"+B,C)}}}d={VERSION:"1.0.0",appendHash:"",prependHash:"/",separator:"/",changed:new s(),stopped:new s(),initialized:new s(),init:function(){if(A){return}r=z();if(w){x(i,"hashchange",y)}else{if(b){if(!c){u()}f()}k=setInterval(y,m)}A=true;d.initialized.dispatch(q(r))},stop:function(){if(!A){return}if(w){t(i,"hashchange",y)}else{clearInterval(k);k=null}A=false;d.stopped.dispatch(q(r))},isActive:function(){return A},getURL:function(){return a.href},getBaseURL:function(){return d.getURL().replace(h,"")},setHash:function(B){var C=Array.prototype.slice.call(arguments);B=C.join(d.separator);B=B?d.prependHash+B.replace(e,"")+d.appendHash:B;if(B!==r){j(B);if(g&&o){B=B.replace(/\?/,"%3F")}a.hash="#"+encodeURI(B)}},getHash:function(){return q(r)},getHashAsArray:function(){return d.getHash().split(d.separator)},dispose:function(){d.stop();d.initialized.dispose();d.stopped.dispose();d.changed.dispose();c=d=i.hasher=null},toString:function(){return'[hasher version="'+d.VERSION+'" hash="'+d.getHash()+'"]'}};return d}(window));//fgnass.github.com/spin.js
+(function(window, document, undefined) {
+
+/**
+ * Copyright (c) 2011 Felix Gnass [fgnass at neteye dot de]
+ * Licensed under the MIT license
+ *
+ * Unfortunately uglify.js doesn't provide an option to de-duplicate strings
+ * or to use string-based property access. Hence we have to manually define
+ * some string constants in order to keep file-size below our 3K limit, as
+ * one of the design goals was to create a script that is smaller than an
+ * animated GIF.
+ */
+
+  var width = 'width',
+      length = 'length',
+      radius = 'radius',
+      lines = 'lines',
+      trail = 'trail',
+      color = 'color',
+      opacity = 'opacity',
+      speed = 'speed',
+      shadow = 'shadow',
+      style = 'style',
+      height = 'height',
+      left = 'left',
+      top = 'top',
+      px = 'px',
+      childNodes = 'childNodes',
+      firstChild = 'firstChild',
+      parentNode = 'parentNode',
+      position = 'position',
+      relative = 'relative',
+      absolute = 'absolute',
+      animation = 'animation',
+      transform = 'transform',
+      Origin = 'Origin',
+      Timeout = 'Timeout',
+      coord = 'coord',
+      black = '#000',
+      styleSheets = style + 'Sheets',
+      prefixes = "webkit0Moz0ms0O".split(0), /* Vendor prefixes, separated by zeros */
+      animations = {}, /* Animation rules keyed by their name */
+      useCssAnimations;
+
+  /**
+   * 
+   */
+  function eachPair(args, it) {
+    var end = ~~((args[length]-1)/2);
+    for (var i = 1; i <= end; i++) {
+      it(args[i*2-1], args[i*2]);
+    }
+  }
+
+  /**
+   * Utility function to create elements. If no tag name is given, a DIV is created.
+   */
+  function createEl(tag) {
+    var el = document.createElement(tag || 'div');
+    eachPair(arguments, function(prop, val) {
+      el[prop] = val;
+    });
+    return el;
+  }
+
+  function ins(parent, child1, child2) {
+    if(child2 && !child2[parentNode]) ins(parent, child2);
+    parent.insertBefore(child1, child2||null);
+    return parent;
+  }
+
+  /**
+   * Insert a new stylesheet to hold the @keyframe or VML rules.
+   */
+  ins(document.getElementsByTagName('head')[0], createEl(style));
+  var sheet = document[styleSheets][document[styleSheets][length] - 1];
+
+  /**
+   * Creates an opacity keyframe animation rule.
+   */
+  function addAnimation(to, end) {
+    var name = [opacity, end, ~~(to*100)].join('-'),
+        dest = '{' + opacity + ':' + to + '}',
+        i;
+
+    if (!animations[name]) {
+      for (i=0; i<prefixes[length]; i++) {
+        try {
+          sheet.insertRule('@' +
+            (prefixes[i] && '-'+prefixes[i].toLowerCase() +'-' || '') +
+            'keyframes ' + name + '{0%{' + opacity + ':1}' +
+            end + '%' + dest + 'to' + dest + '}', sheet.cssRules[length]);
+        }
+        catch (err) {
+        }
+      }
+      animations[name] = 1;
+    }
+    return name;
+  }
+
+  /**
+   * Tries various vendor prefixes and returns the first supported property.
+   **/
+  function vendor(el, prop) {
+    var s = el[style],
+        pp,
+        i;
+
+    if(s[prop] !== undefined) return prop;
+    prop = prop.charAt(0).toUpperCase() + prop.slice(1);
+    for(i=0; i<prefixes[length]; i++) {
+      pp = prefixes[i]+prop;
+      if(s[pp] !== undefined) return pp;
+    }
+  }
+
+  /**
+   * Sets multiple style properties at once.
+   */
+  function css(el) {
+    eachPair(arguments, function(n, val) {
+      el[style][vendor(el, n)||n] = val;
+    });
+    return el;
+  }
+
+  /**
+   * Fills in default values. The values are passed as argument pairs rather
+   * than as object in order to save some extra bytes.
+   */
+  function defaults(obj) {
+    eachPair(arguments, function(prop, val) {
+      if (obj[prop] === undefined) obj[prop] = val;
+    });
+    return obj;
+  }
+
+  /** The constructor */
+  var Spinner = function Spinner(o) {
+    this.opts = defaults(o || {},
+      lines, 12,
+      trail, 100,
+      length, 7,
+      width, 5,
+      radius, 10,
+      color, black,
+      opacity, 1/4,
+      speed, 1);
+  },
+  proto = Spinner.prototype = {
+    spin: function(target) {
+      var self = this,
+          el = self.el = self[lines](self.opts);
+
+      if (target) {
+        ins(target, css(el,
+          left, ~~(target.offsetWidth/2) + px,
+          top, ~~(target.offsetHeight/2) + px
+        ), target[firstChild]);
+      }
+      if (!useCssAnimations) {
+        // No CSS animation support, use setTimeout() instead
+        var o = self.opts,
+            i = 0,
+            f = 20/o[speed],
+            ostep = (1-o[opacity])/(f*o[trail] / 100),
+            astep = f/o[lines];
+
+        (function anim() {
+          i++;
+          for (var s=o[lines]; s; s--) {
+            var alpha = Math.max(1-(i+s*astep)%f * ostep, o[opacity]);
+            self[opacity](el, o[lines]-s, alpha, o);
+          }
+          self[Timeout] = self.el && window['set'+Timeout](anim, 50);
+        })();
+      }
+      return self;
+    },
+    stop: function() {
+      var self = this,
+          el = self.el;
+
+      window['clear'+Timeout](self[Timeout]);
+      if (el && el[parentNode]) el[parentNode].removeChild(el);
+      self.el = undefined;
+      return self;
+    }
+  };
+  proto[lines] = function(o) {
+    var el = css(createEl(), position, relative),
+        animationName = addAnimation(o[opacity], o[trail]),
+        i = 0,
+        seg;
+
+    function fill(color, shadow) {
+      return css(createEl(),
+        position, absolute,
+        width, (o[length]+o[width]) + px, 
+        height, o[width] + px,
+        'background', color,
+        'boxShadow', shadow,
+        transform + Origin, left,
+        transform, 'rotate(' + ~~(360/o[lines]*i) + 'deg) translate(' + o[radius]+px +',0)',
+        'borderRadius', '100em'
+      );
+    }
+    for (; i < o[lines]; i++) {
+      seg = css(createEl(),
+        position, absolute, 
+        top, 1+~(o[width]/2) + px,
+        transform, 'translate3d(0,0,0)',
+        animation, animationName + ' ' + 1/o[speed] + 's linear infinite ' + (1/o[lines]/o[speed]*i - 1/o[speed]) + 's'
+      );
+      if (o[shadow]) ins(seg, css(fill(black, '0 0 4px ' + black), top, 2+px));
+      ins(el, ins(seg, fill(o[color], '0 0 1px rgba(0,0,0,.1)')));
+    }
+    return el;
+  };
+  proto[opacity] = function(el, i, val) {
+    el[childNodes][i][style][opacity] = val;
+  };
+
+  ///////////////////////////////////////////////////////////////////////////////
+  // VML rendering for IE
+  ///////////////////////////////////////////////////////////////////////////////
+
+  var behavior = 'behavior',
+      URL_VML = 'url(#default#VML)',
+      tag = 'group0roundrect0fill0stroke'.split(0);
+
+  /** 
+   * Check and init VML support
+   */
+  (function() {
+    var s = css(createEl(tag[0]), behavior, URL_VML),
+        i;
+
+    if (!vendor(s, transform) && s.adj) {
+      // VML support detected. Insert CSS rules for group, shape and stroke.
+      for (i=0; i < tag[length]; i++) {
+        sheet.addRule(tag[i], behavior + ':' + URL_VML);
+      }
+      proto[lines] = function() {
+        var o = this.opts,
+            r = o[length]+o[width],
+            s = 2*r;
+
+        function grp() {
+          return css(createEl(tag[0], coord+'size', s +' '+s, coord+Origin, -r + ' ' + -r), width, s, height, s);
+        }
+
+        var g = grp(),
+            margin = ~(o[length]+o[radius]+o[width])+px,
+            i;
+
+        function seg(i, dx, filter) {
+          ins(g,
+            ins(css(grp(), 'rotation', 360 / o[lines] * i + 'deg', left, ~~dx), 
+              ins(css(createEl(tag[1], 'arcsize', 1), width, r, height, o[width], left, o[radius], top, -o[width]/2, 'filter', filter),
+                createEl(tag[2], color, o[color], opacity, o[opacity]),
+                createEl(tag[3], opacity, 0) // transparent stroke to fix color bleeding upon opacity change
+              )
+            )
+          );
+        }
+
+        if (o[shadow]) {
+          for (i = 1; i <= o[lines]; i++) {
+            seg(i, -2, 'progid:DXImage'+transform+'.Microsoft.Blur(pixel'+radius+'=2,make'+shadow+'=1,'+shadow+opacity+'=.3)');
+          }
+        }
+        for (i = 1; i <= o[lines]; i++) {
+          seg(i);
+        }
+        return ins(css(createEl(),
+          'margin', margin + ' 0 0 ' + margin,
+          position, relative
+        ), g);
+      };
+      proto[opacity] = function(el, i, val, o) {
+        o = o[shadow] && o[lines] || 0;
+        el[firstChild][childNodes][i+o][firstChild][firstChild][opacity] = val;
+      };
+    }
+    else {
+      useCssAnimations = vendor(s, animation);
+    }
+  })();
+
+  window.Spinner = Spinner;
+
+})(window, document);
+/* 
  * Copyright 2011 DoAT. All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without modification, are
@@ -2388,7 +2713,8 @@ var Doat_Navigation = function(){
         CSS_PREFIX,
         ADDRESS_FIRST = true,
         isNavigating = false,
-        firstPageId;
+        firstPageId,
+        globalOptions;
 
     var b = mainObj.Env.getInfo().browser.name || mainObj.Env.getInfo().browser;
     CSS_PREFIX = b === 'webkit' ? '-webkit-' : b === 'mozilla' ? '-moz-' : '';
@@ -2464,19 +2790,34 @@ var Doat_Navigation = function(){
 
             onComplete($nextElement, options);
         }
-        else if (options && options['transition'] == 'fade'){
-            $nextElement.css(CSS_PREFIX+'transition', 'opacity 0.5s linear');
-                $nextElement.css({
-                    'display': 'block',
-                    'opacity': 1
-                });
+        else if (options && options['transition'] == 'fade'){            
+            
+            $currentElement.
+               css('z-index', 2);
+            
+            if (isMobile){
+                $nextElement.css(CSS_PREFIX+'transition-duration', '0');
+                $nextElement.css(CSS_PREFIX+'transform', 'translateX(0)');
+            }
+            else{
+                $nextElement.css('left', 0);
+            }
+            $nextElement.css('display', 'block');
 
-            $currentElement.css(CSS_PREFIX+'transition', 'opacity 0.5s linear');
-                $currentElement.css({
-                    'opacity': 0
-                });
+            $currentElement.
+               css(CSS_PREFIX+'transition', 'opacity 0.5s linear').
+               css('opacity', 0);
 
-                onComplete($nextElement, options);
+            setTimeout(function(){
+                $currentElement.
+                    css('display', 'none').
+                    css(CSS_PREFIX+'transition-duration', '0').
+                    css({
+                        'z-index': 1,
+                        'opacity': 1
+                    });
+                 onComplete($nextElement, options);
+            }, 200);
         }
         else{
             var direction = options && options.direction || determineDirection($nextElement),
@@ -2539,7 +2880,7 @@ var Doat_Navigation = function(){
                     urlValue = "/" + options.id;
                 }
             }
-            //$.address.value($nextElement[0].id + urlValue);
+            globalOptions = options;
             hasher.setHash($nextElement[0].id + urlValue);
         }
         else{
@@ -2689,7 +3030,7 @@ var Doat_Navigation = function(){
             ADDRESS_FIRST = false;
         }
         else{
-            navigate(page, {}, true);
+            navigate(page, globalOptions, true);
         }
 
         for (var i=0; i<cbs.length; i++) {
