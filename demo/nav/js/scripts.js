@@ -68,7 +68,7 @@ function search(q){
     $page.find("ul").remove();
     var $ul = $("<ul>");
     $page.append($ul);
-    TouchyJS.Nav.Indicator.show();
+    TouchyJS.Nav.Indicator.show({color: '#cccccc'});
     
     // get search results
     $.getJSON('data/search.js?v=2&q='+q, function(response){
