@@ -16,12 +16,13 @@ Touchy Boilerplate is a starting kit for mobile web apps
 
 ### Quick start
 
-Download the files, and take a gander in `index.html`.
-Browse the page with your mobile device or desktop browser - ready to make you own app now?
+1. Download the project files: [zip](https://github.com/doat/TouchyBP/zipball/master), [tar](https://github.com/doat/TouchyBP/tarball/master) or fork [it](https://github.com/doat/TouchyBP).
+2. Browse to `index.html` from your desktop and mobile.
+3. Edit the file to your liking and make it your own.
 
-If you got a php server then you have to try out [TouchyPHP](http://github.com/doat/TouchyPHP)!
-It lets you embed all sorts of assets into the page, thus reducing your browsers http request calls.
-We got a [demo](https://github.com/doat/TouchyBP/tree/master/demo/getfile) for that.
+If you got a server that runs php, start with `index.php` so you could enjoy [TouchyPHP](https://github.com/doat/TouchyPHP) which enables embedding assets into the page (potentially speeding up load time).
+
+[Dig in to the features here](https://github.com/doat/TouchyBP/wiki/Getting-started).
 
 ### Demos
 
