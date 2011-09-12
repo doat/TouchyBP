@@ -22,7 +22,8 @@ Touchy Boilerplate is a starting kit for mobile web apps
 
 If you got a server that runs php, start with `index.php` so you could enjoy [TouchyPHP](https://github.com/doat/TouchyPHP) which enables embedding assets into the page (potentially speeding up load time).
 
-There are *tons of features* for you to dig in to.
+There are *TONS OF FEATURES* for you to dig in to.
+
 [Click here for the getting started guide](https://github.com/doat/TouchyBP/wiki/Getting-started).
 
 ### Demos
