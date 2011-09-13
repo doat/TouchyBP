@@ -32,7 +32,7 @@ Check em out <https://github.com/doat/TouchyBP/tree/master/demo>
 
 ### Project Info
 
-* Web: <http://lbs.doat.com/TouchyBP>
+* Web: <http://labs.doat.com>
 * Source: <http://github.com/doat/TouchyBP>
 * Demos: <https://github.com/doat/TouchyBP/tree/master/demo>
 * Wiki: <https://github.com/doat/TouchyBP/wiki>
