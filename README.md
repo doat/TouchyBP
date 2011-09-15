@@ -41,10 +41,6 @@ Check em out <https://github.com/doat/TouchyBP/tree/master/demo>
 
 ### Dependencies
 
-Well, you must have seen we use quite a lot of open source code.
+TouchyBP itself has no dependencies really.
 
-* [jQuery](http://www.jquery.com)/[Zepto](http://www.zeptojs.com) for [TouchyJS](http://github.com/doat/TouchyJS)
-* [spin.js](http://fgnass.github.com/spin.js/) for our progress indicator 
-* [signals](http://millermedeiros.github.com/js-signals/) plus [hasher](https://github.com/millermedeiros/Hasher) for browser history and deep linking
-* [iScroll](http://cubiq.org/iscroll-4) for fixed header scrolling
-* [normalize.css](http://necolas.github.com/normalize.css/) for css reset
+But using Touchy™JS features does. It's documented right here.
