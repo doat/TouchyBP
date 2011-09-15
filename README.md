@@ -41,6 +41,6 @@ Check em out <https://github.com/doat/TouchyBP/tree/master/demo>
 
 ### Dependencies
 
-TouchyBP itself has no dependencies really.
+Touchy™BP itself has no dependencies really.
 
-But using Touchy™JS features does. It's documented right here.
+But using [Touchy™JS](http://www.github.com/doat/TouchyJS) features does. It's documented [right here](http://www.github.com/doat/TouchyJS/wiki/Dependencies).
