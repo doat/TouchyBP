@@ -1,4 +1,4 @@
-Touchy Boilerplate is a starting kit for mobile web apps
+Touchy™ Boilerplate Boilerplate is a starting kit for mobile web apps
 ---
 
 ### Feature rundown:
